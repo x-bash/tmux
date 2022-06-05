@@ -1,0 +1,37 @@
+# Author:       Li Junhao       l@x-cmd.com                             # xrc
+# shellcheck    shell=sh        disable=SC2039,SC1090,SC3043,SC2263
+
+# license:      GPLv3
+
+
+command -v tmux 2>/dev/null || {
+    x:warn "Tmux Command Not Found. Fail to "
+}
+
+___x_cmd___tmux_origin(){
+    command tmux "$@"
+}
+
+___x_cmd___tmux_main(){
+    param:subcmd ___x_cmd_tmux \
+        "start|s"           "" \
+        "attach|a"          "" \
+        "stop|st"           "" \
+        "kill|k"            "" \
+        "join|j"            "" \
+        "name|n"            "" \
+        "reset|d"           "" \
+        "list|l"            "" \
+        "users|u"           "" \
+        "summon"            "" \
+        "setmirrored"       "" \
+        "togglemirrored"    "" \
+        "kick"              "" \
+        "version"           "" \
+        "conf|c"            "" \
+        "layout"            ""
+
+
+}
+
+
