@@ -1,3 +1,6 @@
+name: "%{workspace}"  # If None, using current directory name.
+root: ~/              # If None, using current directory
+
 windows:
   - editor:
       layout: main-vertical
