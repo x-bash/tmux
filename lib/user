@@ -1,6 +1,0 @@
-___x_cmd_tmux_user(){
-    param:subcmd ___x_cmd_tmux \
-        "status"        "" \
-        "display"       "" \
-
-}

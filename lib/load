@@ -1,0 +1,22 @@
+# shellcheck shell=sh disable=SC3043
+
+___x_cmd_tmux_load(){
+    local file="${1:?Provide config file}"
+    [ -f "$file" ] || { x:info "File Not Found. Exit 1"; return 1; }
+
+    local code
+    if ! code="$(
+        if [ "$file" != "${file%.json}" ]; then
+            cat "$file"
+        else
+            <"$file" x y2j | awk \
+                -f "$___X_CMD_ROOT_MOD/awk/lib/jiter" \
+                -f "$___X_CMD_ROOT_MOD/tmux/lib/conf.awk"
+
+        fi
+    )"; then
+        x:error "Loading failure."
+    fi
+
+    eval "$code"
+}

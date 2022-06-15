@@ -4,34 +4,23 @@
 # license:      GPLv3
 
 
-command -v tmux 2>/dev/null || {
-    x:warn "Tmux Command Not Found. Fail to "
+if ! command -v tmux 2>/dev/null; then
+    x:warn "Tmux Command Not Found. Fail to load this module."
+    return 1
+else
+
+xrc:mod tmux/lib/load
+
+___x_cmd_tmux(){
+    case "$1" in
+        load)       shift; ___x_cmd_tmux_load "$@" ;;
+        *)          ___x_cmd___tmux_origin "$@" ;;
+    esac
 }
 
 ___x_cmd___tmux_origin(){
     command tmux "$@"
 }
 
-___x_cmd___tmux_main(){
-    param:subcmd ___x_cmd_tmux \
-        "start|s"           "" \
-        "attach|a"          "" \
-        "stop|st"           "" \
-        "kill|k"            "" \
-        "join|j"            "" \
-        "name|n"            "" \
-        "reset|d"           "" \
-        "list|l"            "" \
-        "users|u"           "" \
-        "summon"            "" \
-        "setmirrored"       "" \
-        "togglemirrored"    "" \
-        "kick"              "" \
-        "version"           "" \
-        "conf|c"            "" \
-        "layout"            ""
-
-
-}
-
+fi
 

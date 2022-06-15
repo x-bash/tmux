@@ -1,0 +1,23 @@
+name: "%{workspace}"  # If None, using current directory name.
+root: ~/              # If None, using current directory
+
+windows:
+  - name: editor
+    root: ~/
+    layout: main-vertical
+    before: >
+      x use node=v18
+    after: >
+      x use java=12
+    panes:
+      - vim
+      - name: monitor
+        layout: main-horizontal
+        panes:
+          - top
+          - name: netstat
+            exec: netstat -v
+  - name: logs
+    root: "%{PWD}"
+    exec: tail -f log/app.log
+
