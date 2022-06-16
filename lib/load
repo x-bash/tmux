@@ -9,11 +9,10 @@ ___x_cmd_tmux_load(){
         if [ "$file" != "${file%.json}" ]; then
             cat "$file"
         else
-            <"$file" x y2j | awk \
+            <"$file" x y2j
+        fi | awk \
                 -f "$___X_CMD_ROOT_MOD/awk/lib/jiter" \
                 -f "$___X_CMD_ROOT_MOD/tmux/lib/conf.awk"
-
-        fi
     )"; then
         x:error "Loading failure."
     fi
