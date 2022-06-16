@@ -7,8 +7,6 @@ windows:
     layout: main-vertical
     before: >
       x use node=v18
-    after: >
-      x use java=12
     panes:
       - vim
       - name: monitor
