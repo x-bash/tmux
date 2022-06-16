@@ -1,8 +1,15 @@
 
+BEGIN{
+    TMUX_COMMAND = "command tmux "
+}
+
+function tmux( args ){
+    return TMUX_COMMAND " " args
+}
+
 {
     text = text "\n" $0
 }
-
 
 function load( text ){
     arrl = jtokenize( text, arr )
@@ -15,7 +22,7 @@ function code_append( code ){
 
 function generate_code( obj, _name ){
     _name = jget( obj, "name" )
-    code_append( "! tmux attach -t " _name " || return 0" )
+    code_append( "!" tmux("attach -t " _name ) " || return 0" )
 
     _root = jget( obj, "root" )
 
@@ -35,7 +42,7 @@ function prepare_window(){
     _root = jget( obj, "windows", i, "root" )
     _exec = jget( obj, "windows", i, "before" )
 
-    _code = "command tmux new-windows"
+    _code = tmux("new-windows")
     if ( _root != "")       _code = _code " -c " _root " "
     if ( _name != "")       _code = _code " -n " _name " "
     if ( _exec != "" )      _code = _code " " _exec
@@ -51,8 +58,10 @@ function prepare_layout( kp, pane, _layout ){
     _layout = jget( kp, "layout" )
     if (layout == "") return
     if (pane != "") pane = " -t " pane " "
-    code_append( "command tmux select-layout " pane " " _layout)
+    code_append( tmux( " select-layout " pane " " _layout ) )
 }
+
+
 
 function prepare_panel( kp, pane_id,   _code, _pane ){
     l = jlen( kp, panes )
@@ -78,7 +87,7 @@ function prepare_panel( kp, pane_id,   _code, _pane ){
 
         prepare_layout( kp SUBSEP "\"" i "\"", i )
 
-        _code = "command tmux split-window "
+        _code = tmux( "split-window" )
         if ( _root != "")       _code = _code " -c " _root " "
         if ( _exec != "" )      _code = _code " " _exec
 
@@ -94,7 +103,5 @@ function prepare_panel( kp, pane_id,   _code, _pane ){
     }
 
     return _start_pane_id
-
 }
-
 
