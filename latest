@@ -9,11 +9,12 @@ if ! command -v tmux 2>/dev/null; then
     return 1
 else
 
-xrc:mod tmux/lib/load
+xrc:mod:lib tmux load util
 
 ___x_cmd_tmux(){
     case "$1" in
         load)       shift; ___x_cmd_tmux_load "$@" ;;
+        :*)         shift; ___x_cmd_tmux_quickenter "${1#:}" ;;
         *)          ___x_cmd___tmux_origin "$@" ;;
     esac
 }
