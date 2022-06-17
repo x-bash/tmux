@@ -11,6 +11,10 @@ function tmux( args ){
     text = text "\n" $0
 }
 
+END{
+    print CODE
+}
+
 function load( text ){
     arrl = jtokenize( text, arr )
     jparse( obj, arr, arrl )
