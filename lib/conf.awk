@@ -12,19 +12,23 @@ function tmux( args ){
 }
 
 END{
+    load(text)
+
     print CODE
 }
 
 function load( text ){
     arrl = jtokenize( text, arr )
     jparse( obj, arr, arrl )
+
+    generate_code( obj )
 }
 
 function code_append( code ){
     CODE = CODE "\n" code
 }
 
-function generate_code( obj, _name ){
+function generate_code( obj,        _name, _root, l, i, _panel, _window_root ){
     _name = jget( obj, "name" )
     code_append( "!" tmux("attach -t " _name ) " || return 0" )
 
