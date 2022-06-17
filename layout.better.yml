@@ -8,9 +8,12 @@ windows:
     before: >
       x use node=v18
     panes:
-      - vim
+      - name: vim
+        exec: vim
+        size: 30%
       - name: monitor
         layout: main-horizontal
+        size: 40%
         panes:
           - top
           - name: netstat
