@@ -81,8 +81,6 @@ function prepare_panel( kp, pane_id,   _code, _pane ){
             _exec = jget( kp, i, "exec" )
         }
 
-        prepare_layout( kp SUBSEP "\"" i "\"", i )
-
         _code = tmux( "split-window" )
         if ( _root != "")       _code = _code " -c " _root " "
         if ( _exec != "" )      _code = _code " " _exec
