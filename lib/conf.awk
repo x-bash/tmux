@@ -38,10 +38,8 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root ){
     for (i=1; i<=l; ++i) {
         _panel = jlen( obj, "windows", i )
 
-        _window_root = jget( obj, "windows", i, "root" )
-        for (j=1; j<=_panel; ++j) {
-
-        }
+        window_root = jget( obj, "windows", i, "root" )
+        prepare_window()
     }
 }
 
@@ -57,18 +55,8 @@ function prepare_window(){
 
     code_append( _code )
 
-    prepare_layout( obj, "windows", i )
-
     prepare_panel()
 }
-
-function prepare_layout( kp, pane, _layout ){
-    _layout = jget( kp, "layout" )
-    if (layout == "") return
-    if (pane != "") pane = " -t " pane " "
-    code_append( tmux( " select-layout " pane " " _layout ) )
-}
-
 
 
 function prepare_panel( kp, pane_id,   _code, _pane ){
