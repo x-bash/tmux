@@ -15,7 +15,12 @@ ___x_cmd_tmux(){
     case "$1" in
         load)       shift; ___x_cmd_tmux_load "$@" ;;
         :*)         shift; ___x_cmd_tmux_quickenter "${1#:}" ;;
-        *)          ___x_cmd___tmux_origin "$@" ;;
+        *)
+                    if [ -f "$1" ]; then
+                        ___x_cmd_tmux_load "$@"
+                        return
+                    fi
+                    ___x_cmd___tmux_origin "$@" ;;
     esac
 }
 
