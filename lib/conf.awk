@@ -7,8 +7,7 @@ BEGIN{
 
 END{
     generate_code( obj )
-    gsub("\"", "\\\"", CODE)
-    print "\"" CODE "\""
+    print CODE
 }
 
 function TADD( code ){
