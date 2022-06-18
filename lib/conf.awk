@@ -105,7 +105,7 @@ function prepare_panel( kp, pane_id, layout,  _code, _pane , l, i, _exec, _root,
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1
         if (obj[ kp, jqu(i), jqu("panes") ] == "[") {
-            pane_id = prepare_panel( kp SUBSEP jqu(i) SUBSEP jqu("panes"), pane_id, cal_layout(obj[ _kp, jqu(i), jqu("layout") ], "-v") )
+            pane_id = prepare_panel( kp SUBSEP jqu(i) SUBSEP jqu("panes"), pane_id, cal_layout(obj[ _kp, jqu(i), jqu("layout") ], layout) )
         }
     }
 

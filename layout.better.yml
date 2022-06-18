@@ -4,15 +4,15 @@ root: ~/              # If None, using current directory
 windows:
   - name: editor
     root: ~/
-    layout: vertical
+    # layout: vertical
     before: >
       x use node=v18
     panes:
-      - name: vim
-        exec: vim
+      - name: man
+        exec: bash -ic '. ~/.x-cmd/.boot/boot && x man tmux'
         size: 10%
       - name: monitor
-        layout: horizontal
+        # layout: horizontal
         # size: 70%
         panes:
           - top
