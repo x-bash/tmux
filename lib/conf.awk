@@ -8,45 +8,48 @@ function tmux( args ){
 }
 
 {
-    text = text "\n" $0
+    # text = text "\n" $0
+    if ($0 != "") jiparse_after_tokenize(obj, $0)
 }
 
 END{
-    load(text)
+    # load(text)
+    generate_code( obj )
 
     print CODE
 }
 
-function load( text ){
-    arrl = jtokenize( text, arr )
-    jparse( obj, arr, arrl )
+# function load( text , arr ){
+#     obj = jtokenize( text )
+#     jparse( obj, arr )
 
-    generate_code( obj )
-}
+
+#     # generate_code( arr )
+# }
 
 function code_append( code ){
     CODE = CODE "\n" code
 }
 
 function generate_code( obj,        _name, _root, l, i, _panel, _window_root ){
-    _name = jget( obj, "name" )
+    _name = jget( obj, "1.name" )
+    _root = jget( obj, "1.root" )
+
     code_append( "!" tmux("attach -t " _name ) " || return 0" )
 
-    _root = jget( obj, "root" )
+    l = jlen( obj, "1" )
 
-    l = jlen( obj, "windows" )
     for (i=1; i<=l; ++i) {
-        _panel = jlen( obj, "windows", i )
-
-        window_root = jget( obj, "windows", i, "root" )
-        prepare_window()
+        _panel = obj[ SUBSEP jqu("1") SUBSEP jqu("windows") SUBSEP jqu(i) L ]
+        window_root = obj[ SUBSEP jqu("1") SUBSEP jqu("windows") SUBSEP jqu(i) SUBSEP jqu("root") ]
+        prepare_window(i)
     }
 }
 
-function prepare_window(){
-    _name = jget( obj, "windows", i, "name" )
-    _root = jget( obj, "windows", i, "root" )
-    _exec = jget( obj, "windows", i, "before" )
+function prepare_window( i,     _name, _root, _exec,_code ){
+    _name = obj[ SUBSEP jqu("1") SUBSEP jqu("windows") SUBSEP jqu(i) SUBSEP jqu("name") ]
+    _root = obj[ SUBSEP jqu("1") SUBSEP jqu("windows") SUBSEP jqu(i) SUBSEP jqu("root") ]
+    _exec = obj[ SUBSEP jqu("1") SUBSEP jqu("windows") SUBSEP jqu(i) SUBSEP jqu("before") ]
 
     _code = tmux("new-windows")
     if ( _root != "")       _code = _code " -c " _root " "
@@ -59,7 +62,7 @@ function prepare_window(){
 }
 
 
-function prepare_panel( kp, pane_id,   _code, _pane ){
+function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id ){
     l = jlen( kp, panes )
     if (pane_id != "") _pane = " -t:." pane_id " "
 
@@ -70,7 +73,7 @@ function prepare_panel( kp, pane_id,   _code, _pane ){
         _exec = jget( kp, 1, "exec" )
     }
 
-    code_append( "cd " _root )
+    # code_append( "cd " _root )
     code_append( _exec )
 
     for (i=2; i<=l; ++i) {

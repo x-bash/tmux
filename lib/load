@@ -11,11 +11,13 @@ ___x_cmd_tmux_load(){
         else
             <"$file" x y2j
         fi | awk \
-                -f "$___X_CMD_ROOT_MOD/awk/lib/jiter" \
+                -f "$___X_CMD_ROOT_MOD/awk/lib/default.awk"\
+                -f "$___X_CMD_ROOT_MOD/awk/lib/json.awk"\
+                -f "$___X_CMD_ROOT_MOD/awk/lib/jiter.awk"\
                 -f "$___X_CMD_ROOT_MOD/tmux/lib/conf.awk"
     )"; then
         x:error "Loading failure."
     fi
 
-    eval "$code"
+    echo "$code"
 }
