@@ -25,7 +25,12 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
     _name = jget( obj, "1.name" )
     _root = jget( obj, "1.root" )
 
-    code_append( "!" tmux("attach -t " _name ) " || {" )
+    "tmux has-session -t " _name "; echo $?" | getline l
+    if (l == 0) {
+        code_append( tmux("attach -t " _name ) )
+        exit(0)
+    }
+
     code_append( tmux("new -s " _name ) )
 
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" )
