@@ -68,36 +68,28 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 
     if (pane_id != "") _pane = " -t:." pane_id " "
 
-    _root = ""
-    _exec = obj[ kp, jqu(1) ]
-    if (_exec == "{") {
-        _root = obj[ kp, jqu(1), jqu("root") ]
-        _exec = obj[ kp, jqu(1), jqu("exec") ]
-    }
-
-    PANE_EXEC_LOCAL[ 1 ] = _exec
-
-    for (i=2; i<=l; ++i) {
+    for (i=1; i<=l; ++i) {
         _root = ""
         _exec = obj[ kp, jqu(i) ]
         if (_exec == "{") {
             _root = obj[ kp, jqu(i), jqu("root") ]
             _exec = obj[ kp, jqu(i), jqu("exec") ]
         }
-
-        _code = tmux( "split-window" )
-        if ( _root != "")       _code = _code " -c " _root " "
-        code_append( _code )
-
         PANE_EXEC_LOCAL[ i ] = _exec
+
+        if (i>1) {
+            _code = tmux( "split-window" )
+            if ( _root != "")       _code = _code " -c " _root " "
+            code_append( _code )
+        }
     }
 
     for (i=1; i<=l; ++i) {
+        if (i!=1) pane_id = pane_id + 1
         PANE_EXEC[ pane_id ] = PANE_EXEC_LOCAL[ i ]
         if (obj[ kp, jqu(i), jqu("panes") ] == "[") {
-            pane_id = prepare_panel( kp SUBSEP jqu(i), pane_id )
+            pane_id = prepare_panel( kp SUBSEP jqu(i) SUBSEP jqu("panes"), pane_id )
         }
-        pane_id = pane_id + 1
     }
 
     return pane_id
