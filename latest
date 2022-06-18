@@ -4,7 +4,7 @@
 # license:      GPLv3
 
 
-if ! command -v tmux 2>/dev/null; then
+if ! command -v tmux 1>/dev/null; then
     x:warn "Tmux Command Not Found. Fail to load this module."
     return 1
 else
