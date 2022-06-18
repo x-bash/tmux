@@ -65,7 +65,6 @@ function prepare_window( i,     _name, _root, _exec, _kp ){
     TADD( "new-window " _name " " find_exec( _kp ) )
 
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0, cal_layout(obj[ _kp, jqu("layout") ], "-v") )
-    print "Panel Number: " total_panel >"/dev/stderr"
 }
 
 function prepare_panel( kp, pane_id, layout,  _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
@@ -86,14 +85,11 @@ function prepare_panel( kp, pane_id, layout,  _code, _pane , l, i, _exec, _root,
     _sum = 0
     _null = 0
     for (i=1; i<=l; ++i) {
-        print "--- " _size[i]
         if (_size[i] == "")  _null ++
         else                _sum += _size[i]
     }
 
     _rest = 100 - _sum
-    print "null: " _null
-    print "rest: " _rest
     for (i=2; i<=l; ++i) {
         if (_size[i] == "") _size[i] = _rest / _null
     }

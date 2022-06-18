@@ -1,4 +1,4 @@
-name: "New-Session-3"  # If None, using current directory name.
+name: "New-Session-31"  # If None, using current directory name.
 root: ~/              # If None, using current directory
 
 windows:
