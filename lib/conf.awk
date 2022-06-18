@@ -94,7 +94,7 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 
     for (i=1; i<=l; ++i) {
         PANE_EXEC[ pane_id ] = PANE_EXEC_LOCAL[ i ]
-        if (obj[ kp, i, "panes" ] == "[") {
+        if (obj[ kp, jqu(i), jqu("panes") ] == "[") {
             pane_id = prepare_panel( kp SUBSEP jqu(i), pane_id )
         }
         pane_id = pane_id + 1
@@ -105,8 +105,8 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 
 function execute( n,    i ){
     for (i=0; i<=n-1; ++i) {
+        code_append( tmux( "select-panel -t ." i ))
         code_append( PANE_EXEC[i] " # Command " i )
-        if (i<n-1) code_append( tmux( "select-panel -t ." i ))
     }
 }
 
