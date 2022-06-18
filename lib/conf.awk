@@ -85,7 +85,7 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
     }
 
     for (i=1; i<=l; ++i) {
-        if (i!=1) pane_id = pane_id + 1
+        if (i>1) pane_id = pane_id + 1
         PANE_EXEC[ pane_id ] = PANE_EXEC_LOCAL[ i ]
         if (obj[ kp, jqu(i), jqu("panes") ] == "[") {
             pane_id = prepare_panel( kp SUBSEP jqu(i) SUBSEP jqu("panes"), pane_id )
