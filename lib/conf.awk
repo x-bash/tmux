@@ -54,13 +54,26 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     if ( _name != "")       _code = _code " -n " _name " "
     if ( _exec != "" )      _code = _code " " _exec
 
-    delete PANE_EXEC
+    dfs_panel( _kp, 0 )
 
     code_append( _code )
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
 
-    # execute( biggest_panel_id )
+}
+
+function dfs_panel( kp, level, panel_id ){
+    if (obj[ kp, jqu("panes") ] != "{") {
+        DFS[ kp ] = panel_id
+        panel_id ++
+    } else {
+        l = obj[ kp, jqu("panes") L ]
+        for (i=1; i<=l; ++i) {
+            DFS[ kp, i ] = panel_id
+            panel_id = dfs_panel( kp SUBSEP jqu("panes"), level+1, panel_id)
+        }
+    }
+    return panel_id
 }
 
 function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
@@ -75,7 +88,6 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
             _root = obj[ kp, jqu(i), jqu("root") ]
             _exec = obj[ kp, jqu(i), jqu("exec") ]
         }
-        PANE_EXEC_LOCAL[ i ] = _exec
 
         if (i>1) {
             _code = tmux( "split-window" )
@@ -90,7 +102,6 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1
-        PANE_EXEC[ pane_id ] = PANE_EXEC_LOCAL[ i ]
         if (obj[ kp, jqu(i), jqu("panes") ] == "[") {
             pane_id = prepare_panel( kp SUBSEP jqu(i) SUBSEP jqu("panes"), pane_id )
         }
@@ -99,10 +110,4 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
     return pane_id
 }
 
-function execute( biggest_panel_id,    i ){
-    for (i=0; i<=biggest_panel_id; ++i) {
-        code_append( tmux( "select-panel -t ." i ))
-        code_append( PANE_EXEC[i] " # Command " i )
-    }
-}
 
