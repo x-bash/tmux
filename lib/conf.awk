@@ -37,8 +37,8 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
 
     code_append( "!" tmux("attach -t " _name ) " || return 0" )
 
-    l = jlen( obj, "1", "windows" )
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" )
+    l = obj[ _kp, L ]
 
     for (i=1; i<=l; ++i) {
         _panel = obj[ SUBSEP jqu("1") SUBSEP jqu("windows") SUBSEP jqu(i) L ]
