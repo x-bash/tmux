@@ -8,24 +8,14 @@ function tmux( args ){
 }
 
 {
-    # text = text "\n" $0
     if ($0 != "") jiparse_after_tokenize(obj, $0)
 }
 
 END{
-    # load(text)
     generate_code( obj )
-
     print CODE
 }
 
-# function load( text , arr ){
-#     obj = jtokenize( text )
-#     jparse( obj, arr )
-
-
-#     # generate_code( arr )
-# }
 
 function code_append( code ){
     CODE = CODE "\n" code
@@ -95,5 +85,3 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 
     return pane_id
 }
-
-
