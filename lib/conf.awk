@@ -57,10 +57,10 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     delete PANE_EXEC
 
     code_append( _code )
-    total_panel = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
+    biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
 
-    execute( total_panel )
+    execute( biggest_panel_id )
 }
 
 function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
@@ -95,8 +95,8 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
     return pane_id
 }
 
-function execute( n,    i ){
-    for (i=0; i<=n-1; ++i) {
+function execute( biggest_panel_id,    i ){
+    for (i=0; i<=biggest_panel_id; ++i) {
         code_append( tmux( "select-panel -t ." i ))
         code_append( PANE_EXEC[i] " # Command " i )
     }
