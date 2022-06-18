@@ -108,6 +108,7 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 function execute( n,    i ){
     for (i=1; i<=n; ++i) {
         code_append( PANEL_EXEC[i] )
+        code_append( tmux( "select-panel -t ." i ))
     }
 }
 
