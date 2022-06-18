@@ -18,7 +18,7 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
     _name = jget( obj, "1.name" )
     _root = jget( obj, "1.root" )
 
-    "tmux has-session -t " _name " 2>/dev/null; echo $?" | getline l
+    TMUX_COMMAND " has-session -t " _name " 2>/dev/null; echo $?" | getline l
     if (l == 0) {
         TADD( "attach -t " _name )
         exit(0)
