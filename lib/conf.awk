@@ -62,7 +62,7 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
 
 }
 
-function dfs_panel( kp, level, panel_id ){
+function dfs_panel( kp, panel_id ){
     if (obj[ kp, jqu("panes") ] != "{") {
         DFS[ kp ] = panel_id
         panel_id ++
@@ -70,7 +70,7 @@ function dfs_panel( kp, level, panel_id ){
         l = obj[ kp, jqu("panes") L ]
         for (i=1; i<=l; ++i) {
             DFS[ kp, i ] = panel_id
-            panel_id = dfs_panel( kp SUBSEP jqu("panes"), level+1, panel_id)
+            panel_id = dfs_panel( kp SUBSEP jqu("panes"), panel_id)
         }
     }
     return panel_id
