@@ -3,22 +3,15 @@ BEGIN{
     TMUX_COMMAND = "command tmux "
 }
 
-function tmux( args ){
-    return TMUX_COMMAND " " args
-}
-
-{
-    if ($0 != "") jiparse_after_tokenize(obj, $0)
-}
+{   if ($0 != "") jiparse_after_tokenize(obj, $0);  }
 
 END{
     generate_code( obj )
     print CODE
 }
 
-
 function TADD( code ){
-    CODE = (CODE == "") ? ("tmux " code) : (CODE "\\; " code)
+    CODE = (CODE == "") ? (TMUX_COMMAND " " code) : (CODE "\\; " code)
 }
 
 function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _kp ){
