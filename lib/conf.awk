@@ -49,13 +49,12 @@ function find_exec( kp, _code ){
     return _code
 }
 
-function prepare_window( i,     _name, _root, _exec,_code, _kp ){
+function prepare_window( i,     _name, _root, _exec, _kp ){
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" ) SUBSEP jqu(i)
 
     _name = obj[ _kp, jqu("name") ]
-    _code = "new-window"
-    if ( _name != "")       _code = _code " -n " _name " "
-    TADD( _code find_exec( _kp ) )
+    if ( _name != "")       _name = " -n " _name
+    TADD( "new-window " _name " " find_exec( _kp ) )
 
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
