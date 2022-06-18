@@ -63,7 +63,7 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
 }
 
 function dfs_panel( kp, panel_id ){
-    if (obj[ kp, jqu("panes") ] != "{") {
+    if (obj[ kp, jqu("panes") ] != "[") {
         DFS[ kp ] = panel_id ++
     } else {
         l = obj[ kp, jqu("panes") L ]
