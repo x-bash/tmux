@@ -22,7 +22,7 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
     TMUX_COMMAND " has-session -t " _name " 2>/dev/null; echo $?" | getline l
     if (l == 0) {
         TADD( "attach -t " _name )
-        exit(0)
+        return
     }
 
     TADD("new -s " _name )
@@ -50,6 +50,13 @@ function find_exec( kp, _code ){
     return _code
 }
 
+function cal_layout( value, last_layout ){
+    if (value == "") {
+        return (last_layout == "-h") ? "-v" : "-h"
+    }
+    return (value == "\"vertical\"") ? "-v" : "-h"
+}
+
 function prepare_window( i,     _name, _root, _exec, _kp ){
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" ) SUBSEP jqu(i)
 
@@ -57,41 +64,48 @@ function prepare_window( i,     _name, _root, _exec, _kp ){
     if ( _name != "")       _name = " -n " _name
     TADD( "new-window " _name " " find_exec( _kp ) )
 
-    biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
+    biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0, cal_layout(obj[ _kp, jqu("layout") ], "-v") )
     print "Panel Number: " total_panel >"/dev/stderr"
 }
 
-function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
+function prepare_panel( kp, pane_id, layout,  _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
     l = obj[ kp L ]
 
     if (pane_id != "")      _pane = " -t:." pane_id " "
 
-    for (i=1; i<=n; ++i) {
-        _value = obj[ _kp, jqu(i), jqu("size") ]
+    for (i=1; i<=l; ++i) {
+        _value = obj[ kp, jqu(i), jqu("size") ]
+        if (_value == "") {
+            _size[i] = ""
+            continue
+        }
         if (_value ~ /^".+"$/)  _value = substr(_value, 2, length(_value)-2)
-        size[i] = int(_value)
+        _size[i] = int(_value)
     }
 
     _sum = 0
     _null = 0
-    for (i=1; i<=n; ++i) {
+    for (i=1; i<=l; ++i) {
+        print "--- " _size[i]
         if (_size[i] == "")  _null ++
         else                _sum += _size[i]
     }
 
-    _rest = 100 - sum
-    for (i=1; i<=n; ++i) {
+    _rest = 100 - _sum
+    print "null: " _null
+    print "rest: " _rest
+    for (i=2; i<=l; ++i) {
         if (_size[i] == "") _size[i] = _rest / _null
     }
 
-    for (i=n-1; i>=2; --i) _size[i] = _size[i] + size[i+1]
+    for (i=l-1; i>=2; --i) _size[i] = _size[i] + _size[i+1]
 
-    for (i=2; i<=l; ++i) TADD( sprintf("split-window -l %d%% %s", _size[i], find_exec( kp SUBSEP jqu(i) ) ) )
+    for (i=2; i<=l; ++i) TADD( sprintf("split-window %s -l %d%% %s", layout , _size[i], find_exec( kp SUBSEP jqu(i) ) ) )
 
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1
         if (obj[ kp, jqu(i), jqu("panes") ] == "[") {
-            pane_id = prepare_panel( kp SUBSEP jqu(i) SUBSEP jqu("panes"), pane_id )
+            pane_id = prepare_panel( kp SUBSEP jqu(i) SUBSEP jqu("panes"), pane_id, cal_layout(obj[ _kp, jqu(i), jqu("layout") ], "-v") )
         }
     }
 

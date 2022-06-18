@@ -1,24 +1,24 @@
-name: "New-Session"  # If None, using current directory name.
+name: "New-Session-3"  # If None, using current directory name.
 root: ~/              # If None, using current directory
 
 windows:
   - name: editor
     root: ~/
-    layout: main-vertical
+    layout: vertical
     before: >
       x use node=v18
     panes:
       - name: vim
         exec: vim
-        size: 30%
+        size: 10%
       - name: monitor
-        layout: main-horizontal
-        size: 40%
+        layout: horizontal
+        # size: 70%
         panes:
           - top
           - name: netstat
             exec: netstat -v
-  - name: logs
-    # root: "%{PWD}"
-    exec: tail -f log/app.log
+  # - name: logs
+  #   # root: "%{PWD}"
+  #   exec: tail -f log/app.log
 
