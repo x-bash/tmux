@@ -18,18 +18,20 @@ END{
 
 
 function code_append( code ){
-    CODE = CODE "\n" code
+    CODE = CODE "; " code
 }
 
 function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _kp ){
     _name = jget( obj, "1.name" )
     _root = jget( obj, "1.root" )
 
-    code_append( "!" tmux("attach -t " _name ) " || return 0" )
+    code_append( "!" tmux("attach -t " _name ) " || {" )
+    code_append( tmux("new -s " _name ) )
 
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" )
     l = obj[ _kp L ]
     for (i=1; i<=l; ++i) prepare_window( i )
+    code_append("}")
 }
 
 
@@ -54,10 +56,9 @@ function find_exec( kp, _code ){
 
 function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" ) SUBSEP jqu(i)
-    dfs_panel( _kp, 0 )
 
     _name = obj[ _kp, jqu("name") ]
-    _code = tmux("new-windows")
+    _code = tmux("new-window")
     if ( _name != "")       _code = _code " -n " _name " "
     code_append( _code find_exec( _kp ) )
 
