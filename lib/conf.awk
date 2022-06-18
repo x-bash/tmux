@@ -60,7 +60,7 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
 
-    execute( biggest_panel_id )
+    # execute( biggest_panel_id )
 }
 
 function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
@@ -80,9 +80,13 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
         if (i>1) {
             _code = tmux( "split-window" )
             if ( _root != "")       _code = _code " -c " _root " "
+            if ( _exec != "")       _code = _code " " _exec " "
             code_append( _code )
+        } else {
+            FIRST_EXEC = _exec
         }
     }
+
 
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1

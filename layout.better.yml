@@ -1,4 +1,4 @@
-name: "New-Windows"  # If None, using current directory name.
+name: "New-Session"  # If None, using current directory name.
 root: ~/              # If None, using current directory
 
 windows:
