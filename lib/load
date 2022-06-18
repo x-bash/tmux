@@ -19,5 +19,5 @@ ___x_cmd_tmux_load(){
         x:error "Loading failure."
     fi
 
-    eval "eval $code"
+    eval "$code"
 }
