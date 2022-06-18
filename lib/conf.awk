@@ -38,12 +38,8 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
     code_append( "!" tmux("attach -t " _name ) " || return 0" )
 
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" )
-    l = obj[ _kp, L ]
-
-    for (i=1; i<=l; ++i) {
-        _panel = obj[ SUBSEP jqu("1") SUBSEP jqu("windows") SUBSEP jqu(i) L ]
-        prepare_window( i )
-    }
+    l = obj[ _kp L ]
+    for (i=1; i<=l; ++i) prepare_window( i )
 }
 
 function prepare_window( i,     _name, _root, _exec,_code, _kp ){
@@ -58,40 +54,46 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     if ( _name != "")       _code = _code " -n " _name " "
     if ( _exec != "" )      _code = _code " " _exec
 
+    delete PANE_EXEC
+
     code_append( _code )
-    total_panel = prepare_panel( _kp SUBSEP "panes", 1 )
+    total_panel = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
 }
 
-function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id ){
-    l = jlen( kp, panes )
+function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
+    l = obj[ kp L ]
+
     if (pane_id != "") _pane = " -t:." pane_id " "
 
+    print "lkk: " pane_id "\t" l >"/dev/stderr"
+    print "lkk: " kp "\t" l >"/dev/stderr"
     _root = ""
     _exec = obj[ kp, jqu(1) ]
     if (_exec == "{") {
-        _root = obj[ kp, 1, jqu("root") ]
-        _exec = obj[ kp, 1, jqu("exec") ]
+        _root = obj[ kp, jqu(1), jqu("root") ]
+        _exec = obj[ kp, jqu(1), jqu("exec") ]
     }
 
-    code_append( _exec )
+    PANE_EXEC_LOCAL[ 1 ] = _exec
 
     for (i=2; i<=l; ++i) {
         _root = ""
         _exec = obj[ kp, jqu(i) ]
         if (_exec == "{") {
-            _root = obj[ kp, i, jqu("root") ]
-            _exec = obj[ kp, i, jqu("exec") ]
+            _root = obj[ kp, jqu(i), jqu("root") ]
+            _exec = obj[ kp, jqu(i), jqu("exec") ]
         }
 
         _code = tmux( "split-window" )
         if ( _root != "")       _code = _code " -c " _root " "
-        if ( _exec != "" )      _code = _code " " _exec
-
         code_append( _code )
+
+        PANE_EXEC_LOCAL[ 1 ] = _exec
     }
 
     for (i=1; i<=l; ++i) {
+        PANE_EXEC[ pane_id ] = PANE_EXEC_LOCAL[ i ]
         if (obj[ kp, i, "panes" ] == "[") {
             pane_id = prepare_panel( kp SUBSEP jqu(i), pane_id )
         }

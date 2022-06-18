@@ -1,4 +1,4 @@
-name: "%{workspace}"  # If None, using current directory name.
+name: "New-Windows"  # If None, using current directory name.
 root: ~/              # If None, using current directory
 
 windows:
@@ -19,6 +19,6 @@ windows:
           - name: netstat
             exec: netstat -v
   - name: logs
-    root: "%{PWD}"
+    # root: "%{PWD}"
     exec: tail -f log/app.log
 
