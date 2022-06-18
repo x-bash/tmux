@@ -65,12 +65,8 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
 function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
     l = obj[ kp L ]
 
-    if (pane_id != "") _pane = " -t:." pane_id " "
-
-    for (i=2; i<=l; ++i) {
-        _code = "split-window " find_exec( kp SUBSEP jqu(i) )
-        TADD( _code )
-    }
+    if (pane_id != "")      _pane = " -t:." pane_id " "
+    for (i=2; i<=l; ++i)    TADD( "split-window " find_exec( kp SUBSEP jqu(i) ) )
 
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1
