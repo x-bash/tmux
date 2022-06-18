@@ -67,15 +67,9 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     dfs_panel( _kp, 0 )
 
     _name = obj[ _kp, jqu("name") ]
-    _root = obj[ _kp, jqu("root") ]
-    _exec = find_exec( _kp )
-
     _code = tmux("new-windows")
     if ( _name != "")       _code = _code " -n " _name " "
-    if ( _root != "")       _code = _code " -c " _root " "
-    if ( _exec != "")       _code = _code " " _exec " "
-
-    code_append( _code )
+    code_append( _code find_exec( _kp ) )
 
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
