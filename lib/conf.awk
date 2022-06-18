@@ -31,7 +31,6 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
     for (i=1; i<=l; ++i) prepare_window( i )
 }
 
-
 function find_exec( kp, _code ){
     ___kp = kp
     _root = ""
