@@ -42,21 +42,26 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
     for (i=1; i<=l; ++i) prepare_window( i )
 }
 
+function prepare_arg( no,   _root, _exec, _ret ){
+    _root = DFS[ no, "root" ]
+    _ret = " -c " _root
+    _exec = DFS[ no, "exec" ]
+    _ret = _ret _exec
+    return _ret
+}
+
 function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" ) SUBSEP jqu(i)
-
-    _name = obj[ _kp, jqu("name") ]
-    _root = obj[ _kp, jqu("root") ]
-    _exec = obj[ _kp, jqu("before") ]
-
-    _code = tmux("new-windows")
-    if ( _root != "")       _code = _code " -c " _root " "
-    if ( _name != "")       _code = _code " -n " _name " "
-    if ( _exec != "" )      _code = _code " " _exec
-
     dfs_panel( _kp, 0 )
 
+    _name = obj[ _kp, jqu("name") ]
+
+    _code = tmux("new-windows")
+    if ( _name != "")       _code = _code " -n " _name " "
+    _code = _code prepare_arg( 0 )
+
     code_append( _code )
+
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
 
@@ -65,6 +70,17 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
 function dfs_panel( kp, panel_id ){
     if (obj[ kp, jqu("panes") ] != "[") {
         DFS[ kp ] = panel_id ++
+        _name = ""
+        _root = ""
+        _exec = obj[ kp ]
+        if (_exec == "{") {
+            _name = obj[ _kp, jqu("name") ]
+            _root = obj[ kp, jqu( "root" ) ]
+            _exec = obj[ kp, juq( "exec" ) ]
+        }
+        DFS[ panel_id, "name" ] = _name
+        DFS[ panel_id, "root" ] = _root
+        DFS[ panel_id, "exec" ] = _exec
     } else {
         l = obj[ kp, jqu("panes") L ]
         for (i=1; i<=l; ++i) {
