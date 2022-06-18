@@ -17,26 +17,25 @@ END{
 }
 
 
-function code_append( code ){
-    CODE = CODE "; " code
+function TADD( code ){
+    CODE = (CODE == "") ? ("tmux " code) : (CODE "\\; " code)
 }
 
 function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _kp ){
     _name = jget( obj, "1.name" )
     _root = jget( obj, "1.root" )
 
-    "tmux has-session -t " _name "; echo $?" | getline l
+    "tmux has-session -t " _name " 2>/dev/null; echo $?" | getline l
     if (l == 0) {
-        code_append( tmux("attach -t " _name ) )
+        TADD( "attach -t " _name )
         exit(0)
     }
 
-    code_append( tmux("new -s " _name ) )
+    TADD("new -s " _name )
 
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" )
     l = obj[ _kp L ]
     for (i=1; i<=l; ++i) prepare_window( i )
-    code_append("}")
 }
 
 
@@ -63,9 +62,9 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" ) SUBSEP jqu(i)
 
     _name = obj[ _kp, jqu("name") ]
-    _code = tmux("new-window")
+    _code = "new-window"
     if ( _name != "")       _code = _code " -n " _name " "
-    code_append( _code find_exec( _kp ) )
+    TADD( _code find_exec( _kp ) )
 
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
@@ -78,8 +77,8 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
     if (pane_id != "") _pane = " -t:." pane_id " "
 
     for (i=2; i<=l; ++i) {
-        _code = tmux( "split-window" ) find_exec( kp SUBSEP jqu(i) )
-        code_append( _code )
+        _code = "split-window " find_exec( kp SUBSEP jqu(i) )
+        TADD( _code )
     }
 
     for (i=1; i<=l; ++i) {
