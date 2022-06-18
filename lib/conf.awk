@@ -65,7 +65,28 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
     l = obj[ kp L ]
 
     if (pane_id != "")      _pane = " -t:." pane_id " "
-    for (i=2; i<=l; ++i)    TADD( "split-window " find_exec( kp SUBSEP jqu(i) ) )
+
+    for (i=1; i<=n; ++i) {
+        _value = obj[ _kp, jqu(i), jqu("size") ]
+        if (_value ~ /^".+"$/)  _value = substr(_value, 2, length(_value)-2)
+        size[i] = int(_value)
+    }
+
+    _sum = 0
+    _null = 0
+    for (i=1; i<=n; ++i) {
+        if (_size[i] == "")  _null ++
+        else                _sum += _size[i]
+    }
+
+    _rest = 100 - sum
+    for (i=1; i<=n; ++i) {
+        if (_size[i] == "") _size[i] = _rest / _null
+    }
+
+    for (i=n-1; i>=2; --i) _size[i] = _size[i] + size[i+1]
+
+    for (i=2; i<=l; ++i) TADD( sprintf("split-window -l %d%% %s", _size[i], find_exec( kp SUBSEP jqu(i) ) ) )
 
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1
