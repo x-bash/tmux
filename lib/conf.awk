@@ -60,7 +60,6 @@ function prepare_window( i,     _name, _root, _exec,_code, _kp ){
 
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0 )
     print "Panel Number: " total_panel >"/dev/stderr"
-
 }
 
 function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
