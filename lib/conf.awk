@@ -92,7 +92,7 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
     }
 
     for (i=1; i<=l; ++i) {
-        if (jget( kp, i, "panes" ) == "[") {
+        if (obj[ kp, i, "panes" ] == "[") {
             pane_id = prepare_panel( kp SUBSEP jqu(i), pane_id )
         }
         pane_id = pane_id + 1
