@@ -68,8 +68,6 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 
     if (pane_id != "") _pane = " -t:." pane_id " "
 
-    print "lkk: " pane_id "\t" l >"/dev/stderr"
-    print "lkk: " kp "\t" l >"/dev/stderr"
     _root = ""
     _exec = obj[ kp, jqu(1) ]
     if (_exec == "{") {
@@ -91,7 +89,7 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
         if ( _root != "")       _code = _code " -c " _root " "
         code_append( _code )
 
-        PANE_EXEC_LOCAL[ 1 ] = _exec
+        PANE_EXEC_LOCAL[ i ] = _exec
     }
 
     for (i=1; i<=l; ++i) {
@@ -106,9 +104,9 @@ function prepare_panel( kp, pane_id,   _code, _pane , l, i, _exec, _root, _start
 }
 
 function execute( n,    i ){
-    for (i=1; i<=n; ++i) {
-        code_append( PANEL_EXEC[i] )
-        code_append( tmux( "select-panel -t ." i ))
+    for (i=0; i<=n-1; ++i) {
+        code_append( PANE_EXEC[i] " # Command " i )
+        if (i<n-1) code_append( tmux( "select-panel -t ." i ))
     }
 }
 
