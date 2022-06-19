@@ -23,9 +23,9 @@ while true; do
 
     printf "%s" "Choose: "
     case "$idx" in
-        1)  eval "$___X_CMD_TMUX_EXEC" ;;
-        2)  ___x_cmd_tmux_xsh_start_shell ;;
-        3)  break ;;
+        1)  clear; eval "$___X_CMD_TMUX_EXEC" ;;
+        2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
+        3)  clear; break ;;
     esac
 done
 
