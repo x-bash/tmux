@@ -1,7 +1,10 @@
 # shellcheck shell=sh disable=SC3043
 
 ___x_cmd_tmux_load(){
-    local file="${1:?Provide config file}"
+    local file="${1}"
+
+    [ -n "$file" ] || ___x_cmd_tmux_load___default
+
     [ -f "$file" ] || { x:info "File Not Found. ___x_cmd_tmux_load() Exit 1"; return 1; }
 
     local code
@@ -20,4 +23,19 @@ ___x_cmd_tmux_load(){
     fi
 
     eval "$code"
+}
+
+___x_cmd_tmux_load___default(){
+    local f
+    for f in ws.yml ws.json tmux.yml tmux.json; do
+        [ ! -f "$f" ] || { file="$f"; return 0; }
+    done
+
+    local wsroot
+    wsroot="$(x wsroot)"
+    for f in ws.yml ws.json tmux.yml tmux.json; do
+        [ ! -f "$wsroot/$f" ] || { file="$wsroot/$f"; return 0; }
+    done
+
+    return 1
 }

@@ -13,6 +13,7 @@ xrc:mod:lib tmux load util
 
 ___x_cmd_tmux(){
     case "$1" in
+        "")         ___x_cmd_tmux_load ;;
         load)       shift; ___x_cmd_tmux_load "$@" ;;
         :*)         shift; ___x_cmd_tmux_quickenter "${1#:}" ;;
         *)
