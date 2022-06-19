@@ -5,9 +5,9 @@ ___x_cmd_tmux_xsh_start_shell(){
     ___X_CMD_TMUX_EXEC="$___X_CMD_TMUX_EXEC" "${SHELL:-sh}" -l -i
 }
 
-_start(){
+_start()(
     eval "$___X_CMD_TMUX_EXEC"
-}
+)
 
 [ -z "${BASH_VERSION}${ZSH_VERSION}" ] || export -f _start
 
