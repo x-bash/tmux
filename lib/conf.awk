@@ -38,6 +38,7 @@ function shell_quote_cmd( exec ){
     return SHELL_CMD " -ic \"" exec "\""
 }
 
+
 function find_exec( kp, _code ){
     ___kp = kp
     _root = ""
@@ -53,7 +54,7 @@ function find_exec( kp, _code ){
         if ("" != obj[ ___kp, jqu("root") ])    _root = obj[___kp, jqu("root")]
         _exec = obj[ ___kp, jqu("x") ]
         if (_exec != "") {
-            _exec = shell_quote_cmd( _exec )
+            _exec = shell_quote_cmd( juq( _exec ) )
         } else {
             _exec = obj[ ___kp, jqu("exec") ]
         }
