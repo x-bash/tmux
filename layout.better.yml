@@ -9,6 +9,7 @@ windows:
       x use node=v18
     panes:
       - name: man
+        x: x man tmux
         exec: bash -ic '. ~/.x-cmd/.boot/boot && x man tmux'
         size: 10%
       - name: monitor
