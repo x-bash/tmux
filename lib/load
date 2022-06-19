@@ -2,7 +2,7 @@
 
 ___x_cmd_tmux_load(){
     local file="${1:?Provide config file}"
-    [ -f "$file" ] || { x:info "File Not Found. Exit 1"; return 1; }
+    [ -f "$file" ] || { x:info "File Not Found. ___x_cmd_tmux_load() Exit 1"; return 1; }
 
     local code
     if ! code="$(
