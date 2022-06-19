@@ -32,12 +32,13 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
 }
 
 function shell_quote_cmd( exec ){
-    exec = ". $HOME/.x-cmd/.boot/boot; " exec
-
     gsub("\"", "\\\"", exec)
-    return SHELL_CMD " -ic \"" exec "\""
-}
+    exec = "___X_CMD_TMUX_EXEC=\"" exec "\"; "
 
+    cmd = ". \"\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
+
+    return exec cmd
+}
 
 function find_exec( kp, _code ){
     ___kp = kp

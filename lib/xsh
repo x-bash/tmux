@@ -1,0 +1,33 @@
+
+. $HOME/.x-cmd/.boot/boot
+
+___x_cmd_tmux_xsh_start_shell(){
+    ___X_CMD_TMUX_EXEC="$___X_CMD_TMUX_EXEC" "${SHELL:-sh}" -l -i
+}
+
+_start(){
+    eval "$___X_CMD_TMUX_EXEC"
+}
+
+[ -z "${BASH_VERSION}${ZSH_VERSION}" ] || export -f _start
+
+
+eval "$___X_CMD_TMUX_EXEC"
+
+while true; do
+
+    printf "%s\n%s" "Choose:" "
+1. Run the Command: $___X_CMD_TMUX_EXEC
+2. Start the $SHELL interactively
+
+0. Exit
+"
+
+    read -r char
+    case "$char" in
+        0)  break ;;
+        1)  eval "$___X_CMD_TMUX_EXEC" ;;
+        2)  ___x_cmd_tmux_xsh_start_shell ;;
+    esac
+done
+
