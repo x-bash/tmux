@@ -24,8 +24,7 @@ ___x_cmd_tmux_load(){
 }
 
 ___x_cmd_tmux_load___default(){
-    local f
-    for f in ws.yml ws.json tmux.yml tmux.json; do
+    local IFS=" "; local f; for f in ws.yml ws.json tmux.yml tmux.json; do
         [ ! -f "$f" ] || { file="$f"; return 0; }
     done
 
