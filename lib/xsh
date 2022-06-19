@@ -15,11 +15,10 @@ _start(){
 eval "$___X_CMD_TMUX_EXEC"
 
 while true; do
-
     x ui select idx,text \
-"Choose: " \
+"Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
 "Run the Command: $___X_CMD_TMUX_EXEC" \
-"Start the $SHELL interactively" || break
+"Start the $SHELL interactively"
 
     printf "%s" "Choose: "
     case "$idx" in

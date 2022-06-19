@@ -11,7 +11,7 @@ windows:
       - name: man
         x: x man tmux
         exec: bash -ic '. ~/.x-cmd/.boot/boot && x man tmux'
-        size: 10%
+        size: 30%
       - name: monitor
         # layout: horizontal
         # size: 70%
