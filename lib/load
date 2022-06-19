@@ -2,9 +2,7 @@
 
 ___x_cmd_tmux_load(){
     local file="${1}"
-
     [ -n "$file" ] || ___x_cmd_tmux_load___default
-
     [ -f "$file" ] || { x:info "File Not Found. ___x_cmd_tmux_load() Exit 1"; return 1; }
 
     local code
