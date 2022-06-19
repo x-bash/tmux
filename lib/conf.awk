@@ -1,6 +1,7 @@
 
 BEGIN{
-    TMUX_COMMAND = "command tmux "
+    if ("" == TMUX_CMD  )     TMUX_CMD = "command tmux "
+    if ("" == SHELL_CMD )    SHELL_CMD = "${SHELL:-sh}"
 }
 
 {   if ($0 != "") jiparse_after_tokenize(obj, $0);  }
@@ -11,14 +12,14 @@ END{
 }
 
 function TADD( code ){
-    CODE = (CODE == "") ? (TMUX_COMMAND " " code) : (CODE "\\; " code)
+    CODE = (CODE == "") ? (TMUX_CMD " " code) : (CODE "\\; " code)
 }
 
 function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _kp ){
     _name = jget( obj, "1.name" )
     _root = jget( obj, "1.root" )
 
-    TMUX_COMMAND " has-session -t " _name " 2>/dev/null; echo $?" | getline l
+    TMUX_CMD " has-session -t " _name " 2>/dev/null; echo $?" | getline l
     if (l == 0) {
         TADD( "attach -t " _name )
         return
@@ -30,6 +31,11 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
     for (i=1; i<=obj[ _kp L ]; ++i) prepare_window( i )
 }
 
+function shell_quote_cmd( exec ){
+    gsub("\"", "\\\"", exec)
+    return SHELL_CMD " -ic \"" exec "\""
+}
+
 function find_exec( kp, _code ){
     ___kp = kp
     _root = ""
@@ -39,9 +45,16 @@ function find_exec( kp, _code ){
     }
 
     _exec = obj[ ___kp ]
-    if (_exec == "{" ) {
+    if (_exec != "{" ) {
+        _exec = shell_quote_cmd( _exec )
+    } else {
         if ("" != obj[ ___kp, jqu("root") ])    _root = obj[___kp, jqu("root")]
-        _exec = obj[ ___kp, jqu("exec") ]
+        _exec = obj[ ___kp, jqu("x") ]
+        if (_exec != "") {
+            _exec = shell_quote_cmd( _exec )
+        } else {
+            _exec = obj[ ___kp, jqu("exec") ]
+        }
     }
 
     if ( _root != "")       _code = _code " -c " _root " "
