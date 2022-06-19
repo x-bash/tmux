@@ -43,11 +43,6 @@ function shell_quote_cmd( exec ){
     return cmd
 }
 
-function shquote( s ){
-    gsub("'", "\\'", s)
-    return "'" s "'"
-}
-
 function find_exec( kp, _code ){
     ___kp = kp
     _root = ""
@@ -65,7 +60,7 @@ function find_exec( kp, _code ){
         if (_exec != "") {
             _exec = shell_quote_cmd( juq( _exec ) )
         } else {
-            _exec = shquote( juq( obj[ ___kp, jqu("exec") ] ) )
+            _exec = shell_quote_cmd( juq( obj[ ___kp, jqu("exec") ] ) )
         }
     }
 

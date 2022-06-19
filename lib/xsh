@@ -19,8 +19,7 @@ while true; do
     x ui select idx,text \
 "Choose: " \
 "Run the Command: $___X_CMD_TMUX_EXEC" \
-"Start the $SHELL interactively" \
-"Exit" || break
+"Start the $SHELL interactively" || break
 
     printf "%s" "Choose: "
     case "$idx" in
