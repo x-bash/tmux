@@ -15,6 +15,7 @@ _start(){
 eval "$___X_CMD_TMUX_EXEC"
 
 while true; do
+    clear
     x ui select idx,text \
 "Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
 "Run the Command: $___X_CMD_TMUX_EXEC" \
