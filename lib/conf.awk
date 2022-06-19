@@ -32,6 +32,8 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
 }
 
 function shell_quote_cmd( exec ){
+    exec = ". $HOME/.x-cmd/.boot/boot; " exec
+
     gsub("\"", "\\\"", exec)
     return SHELL_CMD " -ic \"" exec "\""
 }
