@@ -29,6 +29,8 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
 
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" )
     for (i=1; i<=obj[ _kp L ]; ++i) prepare_window( i )
+
+    TADD("kill-window -t 0")
 }
 
 function shell_quote_cmd( exec ){
