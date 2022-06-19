@@ -5,14 +5,14 @@ ___x_cmd_tmux_xsh_start_shell(){
     ___X_CMD_TMUX_EXEC="$___X_CMD_TMUX_EXEC" "${SHELL:-sh}" -l -i
 }
 
-_start(){
+_start()(
     eval "$___X_CMD_TMUX_EXEC"
-}
+)
 
 [ -z "${BASH_VERSION}${ZSH_VERSION}" ] || export -f _start
 
 
-eval "$___X_CMD_TMUX_EXEC"
+_start
 
 while true; do
     clear
@@ -23,7 +23,7 @@ while true; do
 
     printf "%s" "Choose: "
     case "$idx" in
-        1)  clear; eval "$___X_CMD_TMUX_EXEC" ;;
+        1)  clear; _start ;;
         2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
         3)  clear; break ;;
     esac
