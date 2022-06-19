@@ -35,9 +35,12 @@ function shell_quote_cmd( exec ){
     gsub("\"", "\\\"", exec)
     exec = "___X_CMD_TMUX_EXEC=\"" exec "\"; "
 
-    cmd = ". \"\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
+    cmd = exec ". \"\\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
 
-    return exec cmd
+    gsub("\"", "\\\"", cmd)
+    cmd = SHELL_CMD " -ic "  "\"" cmd "\""
+
+    return cmd
 }
 
 function find_exec( kp, _code ){
