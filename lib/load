@@ -29,7 +29,7 @@ ___x_cmd_tmux_load___default(){
     done
 
     local wsroot
-    wsroot="$(x wsroot)"
+    wsroot="$(x wsroot)/.x-cmd"
     for f in ws.yml ws.json tmux.yml tmux.json; do
         [ ! -f "$wsroot/$f" ] || { file="$wsroot/$f"; return 0; }
     done
