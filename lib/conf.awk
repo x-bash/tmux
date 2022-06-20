@@ -117,7 +117,7 @@ function prepare_panel( kp, pane_id, layout,        _code, _pane , l, i, _exec, 
 
     for (i=l-1; i>=2; --i) _size[i] = _size[i] + _size[i+1]
 
-    for (i=2; i<=l; ++i) TADD( sprintf("split-window %s -l %d%% %s", layout , _size[i], find_exec( kp SUBSEP jqu(i) ) ) )
+    for (i=2; i<=l; ++i) TADD( sprintf("split-window %s %s -l %d%% %s", _pane, layout , _size[i], find_exec( kp SUBSEP jqu(i) ) ) )
 
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1
