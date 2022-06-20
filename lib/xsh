@@ -12,8 +12,6 @@ ___x_cmd_tmux_xsh_start_shell(){
 # )
 
 _shellstart()(
-    # set +o errexit
-    # ( ( eval "$___X_CMD_TMUX_EXEC"; ) || true ) || true
     bash -ic "$___X_CMD_TMUX_EXEC"
 )
 
