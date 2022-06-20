@@ -23,10 +23,12 @@ while true; do
 "Start the $SHELL interactively"
 
     printf "%s" "Choose: "
-    case "$idx" in
-        1)  clear; _start ;;
-        2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
-        3)  clear; break ;;
-    esac
+    (
+        case "$idx" in
+            1)  clear; _start ;;
+            2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
+            3)  clear; break ;;
+        esac
+    )
 done
 

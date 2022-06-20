@@ -12,7 +12,9 @@ windows:
         # layout: horizontal
         # size: 70%
         panes:
-          - top
+          - panes:
+              - top
+              - x dust; read r
           - name: netstat
             exec: netstat -v
       - name: man
