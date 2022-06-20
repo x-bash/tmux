@@ -11,23 +11,27 @@ _start()(
 
 [ -z "${BASH_VERSION}${ZSH_VERSION}" ] || export -f _start
 
-set +o errexit
 
-_start
+___x_cmd_tmux_xsh_mainloop(){
+    set +o errexit
+    _start
+    while true; do
+        echo "aaa $___X_CMD_TMUX_EXEC" >>a.txt
+        clear
+        x ui select idx,text \
+    "Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
+    "Run the Command: $___X_CMD_TMUX_EXEC" \
+    "Start the $SHELL interactively"
 
-while true || true; do
-    clear
-    x ui select idx,text \
-"Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
-"Run the Command: $___X_CMD_TMUX_EXEC" \
-"Start the $SHELL interactively"
+        printf "%s" "Choose: "
+        case "$idx" in
+            1)  clear; _start ;;
+            2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
+            3)  clear; break ;;
+        esac
+        echo "bbb $___X_CMD_TMUX_EXEC" >>a.txt
+    done
+}
 
-    printf "%s" "Choose: "
-    case "$idx" in
-        1)  clear; _start ;;
-        2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
-        3)  clear; break ;;
-    esac
-
-done
+___x_cmd_tmux_xsh_mainloop
 
