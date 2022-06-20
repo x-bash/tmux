@@ -78,7 +78,7 @@ function cal_layout( value, last_layout ){
     return (value == "\"vertical\"") ? "-v" : "-h"
 }
 
-function prepare_window( i,     _name, _root, _exec, _kp ){
+function prepare_window( i,                         _name, _root, _exec, _kp ){
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" ) SUBSEP jqu(i)
 
     _name = obj[ _kp, jqu("name") ]
@@ -88,7 +88,7 @@ function prepare_window( i,     _name, _root, _exec, _kp ){
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0, cal_layout(obj[ _kp, jqu("layout") ], "-v") )
 }
 
-function prepare_panel( kp, pane_id, layout,  _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
+function prepare_panel( kp, pane_id, layout,        _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
     l = obj[ kp L ]
 
     if (pane_id != "")      _pane = " -t:." pane_id " "
