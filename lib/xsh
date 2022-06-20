@@ -5,10 +5,11 @@ ___x_cmd_tmux_xsh_start_shell(){
     ___X_CMD_TMUX_EXEC="$___X_CMD_TMUX_EXEC" "${SHELL:-sh}" -l -i
 }
 
-_start()(
-    trap -- "return" INT
-    eval "$___X_CMD_TMUX_EXEC"
-)
+# _start()(
+#     trap -- "return" INT
+#     eval "$___X_CMD_TMUX_EXEC"
+#     trap -- "" INT
+# )
 
 _shellstart()(
     # set +o errexit
@@ -19,7 +20,7 @@ _shellstart()(
 [ -z "${BASH_VERSION}${ZSH_VERSION}" ] || export -f _start
 
 ___x_cmd_tmux_xsh_mainloop_body_ui(){
-    trap -- "return" INT
+    trap "trap -- INT; return" INT
     clear
     x ui select idx,text \
         "Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
@@ -28,16 +29,15 @@ ___x_cmd_tmux_xsh_mainloop_body_ui(){
 }
 
 ___x_cmd_tmux_xsh_mainloop_body(){
-    trap -- "return" INT
     ___x_cmd_tmux_xsh_mainloop_body_ui
     case "$idx" in
-        1)  clear; _start ;;
+        1)  clear; _shellstart ;;
         2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
     esac
 }
 
 ___x_cmd_tmux_xsh_mainloop(){
-    _start
+    _shellstart
     while true; do
         ___x_cmd_tmux_xsh_mainloop_body
     done
