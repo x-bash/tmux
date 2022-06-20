@@ -17,10 +17,12 @@ _shellstart()(
     bash -ic "$___X_CMD_TMUX_EXEC"
 )
 
-[ -z "${BASH_VERSION}${ZSH_VERSION}" ] || export -f _start
+[ -z "${BASH_VERSION}${ZSH_VERSION}" ] || {
+    export -f _shellstart
+    # export -f _start
+}
 
 ___x_cmd_tmux_xsh_mainloop_body_ui(){
-    trap "trap -- INT; return" INT
     clear
     x ui select idx,text \
         "Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
@@ -28,13 +30,14 @@ ___x_cmd_tmux_xsh_mainloop_body_ui(){
         "Start the $SHELL interactively" || true
 }
 
-___x_cmd_tmux_xsh_mainloop_body(){
+___x_cmd_tmux_xsh_mainloop_body()(
+    trap "return" INT
     ___x_cmd_tmux_xsh_mainloop_body_ui
     case "$idx" in
         1)  clear; _shellstart ;;
         2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
     esac
-}
+)
 
 ___x_cmd_tmux_xsh_mainloop(){
     _shellstart
