@@ -35,9 +35,10 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
 
 function shell_quote_cmd( exec ){
     gsub("\"", "\\\"", exec)
-    exec = "___X_CMD_TMUX_EXEC=\"" exec "\"; "
+    exec = "export ___X_CMD_TMUX_EXEC=\"" exec "\"; "
 
-    cmd = exec ". \"\\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
+    # cmd = exec ". \"\\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
+    cmd = exec SHELL_CMD " \"\\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
 
     gsub("\"", "\\\"", cmd)
     cmd = SHELL_CMD " -ic "  "\"" cmd "\""
