@@ -25,7 +25,7 @@ _shellstart()(
 ___x_cmd_tmux_xsh_mainloop_body_ui(){
     clear
     x ui select idx,text \
-        "Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
+        "Please select: (If you want to exit. Using CTRL-B X to kill the panel.)" \
         "Run the Command: $___X_CMD_TMUX_EXEC" \
         "Start the $SHELL interactively" || true
 }
