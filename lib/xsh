@@ -32,6 +32,8 @@ ___x_cmd_tmux_xsh_mainloop_body_ui(){
 
 ___x_cmd_tmux_xsh_mainloop_body()(
     trap "return" INT
+    local idx
+    local text
     ___x_cmd_tmux_xsh_mainloop_body_ui
     case "$idx" in
         1)  clear; _shellstart ;;
