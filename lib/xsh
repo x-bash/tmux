@@ -1,46 +1,48 @@
 
+. $HOME/.x-cmd/.boot/boot
+
 ___x_cmd_tmux_xsh_start_shell(){
     ___X_CMD_TMUX_EXEC="$___X_CMD_TMUX_EXEC" "${SHELL:-sh}" -l -i
 }
 
 _start()(
-    set +o errexit
-    echo "start: $___X_CMD_TMUX_EXEC">>a.txt
-    # ( ( eval "$___X_CMD_TMUX_EXEC"; ) || true ) || true
-    bash -ic "$___X_CMD_TMUX_EXEC"
-    echo "end: $___X_CMD_TMUX_EXEC">>a.txt
+    trap -- "return" INT
+    eval "$___X_CMD_TMUX_EXEC"
 )
 
 _shellstart()(
+    # set +o errexit
+    # echo "start: $___X_CMD_TMUX_EXEC">>a.txt
+    # ( ( eval "$___X_CMD_TMUX_EXEC"; ) || true ) || true
     bash -ic "$___X_CMD_TMUX_EXEC"
+    # echo "end: $___X_CMD_TMUX_EXEC">>a.txt
 )
 
 [ -z "${BASH_VERSION}${ZSH_VERSION}" ] || export -f _start
 
-___x_cmd_tmux_xsh_mainloop_body(){
-    . $HOME/.x-cmd/.boot/boot
-    echo "aaa $___X_CMD_TMUX_EXEC" >>a.txt
+___x_cmd_tmux_xsh_mainloop_body_ui(){
+    trap -- "return" INT
     clear
     x ui select idx,text \
         "Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
         "Run the Command: $___X_CMD_TMUX_EXEC" \
         "Start the $SHELL interactively" || true
+}
 
-    printf "%s" "Choose: "
+___x_cmd_tmux_xsh_mainloop_body(){
+    trap -- "return" INT
+    ___x_cmd_tmux_xsh_mainloop_body_ui
     case "$idx" in
         1)  clear; _start ;;
         2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
     esac
-    echo "bbb $___X_CMD_TMUX_EXEC" >>a.txt
 }
 
 ___x_cmd_tmux_xsh_mainloop(){
-    set +o errexit
     _start
     while true; do
-        ( ___x_cmd_tmux_xsh_mainloop_body; )
+        ___x_cmd_tmux_xsh_mainloop_body
     done
 }
 
 ___x_cmd_tmux_xsh_mainloop
-

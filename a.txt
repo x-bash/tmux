@@ -1,94 +1,3 @@
-xxx: x dust && read r
-xxx: x dust && read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx1: x dust; read r
-aaa x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx1: x dust; read r
-aaa x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-xxx: x dust; read r
-start: : x dust; read r
-start: : x dust; read r
-start: : x dust; read r
-start: x dust; read r
-start: x dust; read r
-start: x dust; read r
-start: x dust; read r
-start: x dust; read r
-start: x dust; read r
-start: x dust; read r
-start: x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-ccc: x dust; read r
-bbb x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-ccc: x dust; read r
-bbb x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-ccc: x dust; read r
-bbb x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-ccc: x dust; read r
-bbb x dust; read r
-aaa x dust; read r
-start: x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-bbb x dust; read r
-aaa x dust; read r
-aaa x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
 start: x dust; read r
 end: x dust; read r
 aaa x dust; read r
@@ -99,6 +8,90 @@ aaa x dust; read r
 start: x dust; read r
 end: x dust; read r
 bbb x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+. /Users/edwinjhlee/.x-cmd/.boot/boot; ___x_cmd_tmux_xsh_mainloop_body
+start: x dust; read r
+end: x dust; read r
+. /Users/edwinjhlee/.x-cmd/.boot/boot; ___x_cmd_tmux_xsh_mainloop_body
+start: x dust; read r
+end: x dust; read r
+. /Users/edwinjhlee/.x-cmd/.boot/boot; ___x_cmd_tmux_xsh_mainloop_body
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+start: x dust; read r
+end: x dust; read r
+___x_cmd_tmux_xsh_mainloop_body
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+start: x dust; read r
+end: x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+aaa x dust; read r
+start: x dust; read r
+end: x dust; read r
 aaa x dust; read r
 start: x dust; read r
 end: x dust; read r
@@ -134,12 +127,7 @@ bbb x dust; read r
 aaa x dust; read r
 start: x dust; read r
 end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
-aaa x dust; read r
-start: x dust; read r
-end: x dust; read r
+bbb x dust; read r
 aaa x dust; read r
 start: x dust; read r
 end: x dust; read r
@@ -147,7 +135,152 @@ bbb x dust; read r
 aaa x dust; read r
 start: x dust; read r
 end: x dust; read r
-aaa x dust; read r
 start: x dust; read r
 end: x dust; read r
-aaa x dust; read r
+bbb x dust; read r
+start: x dust; read r
+end: x dust; read r
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+start: x dust; read r
+end: x dust; read r
+start: x dust; read r
+end: x dust; read r
+start: x dust; read r
+end: x dust; read r
+start: x dust; read r
+end: x dust; read r
+start: x dust; read r
+end: x dust; read r
+start: x dust; read r
+end: x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+end: x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+trap -- 'return' SIGINT
+start: x dust; read r
+start: x dust; read r
+end: x dust; read r
+----
+trap -- 'return' SIGINT
+----
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+start: x dust; read r
+end: x dust; read r
+bbb x dust; read r
+----
+trap -- 'return' SIGINT
+----
+start: x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
+bbb x dust; read r
