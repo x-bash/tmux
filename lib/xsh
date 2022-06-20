@@ -15,7 +15,7 @@ set +o errexit
 
 _start
 
-while true; do
+while true || true; do
     clear
     x ui select idx,text \
 "Choose. (If you want to exit. Using CTRL-B X to kill the panel.)" \
@@ -23,12 +23,11 @@ while true; do
 "Start the $SHELL interactively"
 
     printf "%s" "Choose: "
-    (
-        case "$idx" in
-            1)  clear; _start ;;
-            2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
-            3)  clear; break ;;
-        esac
-    )
+    case "$idx" in
+        1)  clear; _start ;;
+        2)  clear; ___x_cmd_tmux_xsh_start_shell ;;
+        3)  clear; break ;;
+    esac
+
 done
 
