@@ -1,5 +1,5 @@
 
-function ___x_cmd_tmux_quickenter(){
+___x_cmd_tmux_quickenter(){
     local session="${1}"
     if [ -n "$session" ]; then
         session="$(tmux ls | head -n1 | awk '{ print substr($1, 1, length($1)-1); }')"
