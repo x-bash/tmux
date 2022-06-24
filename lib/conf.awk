@@ -35,9 +35,10 @@ function generate_code( obj,        _name, _root, l, i, _panel, _window_root, _k
 
 function shell_quote_cmd( exec ){
     gsub("\"", "\\\"", exec)
-    exec = "___X_CMD_TMUX_EXEC=\"" exec "\"; "
+    exec = "export ___X_CMD_TMUX_EXEC=\"" exec "\"; "
 
-    cmd = exec ". \"\\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
+    # cmd = exec ". \"\\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
+    cmd = exec SHELL_CMD " \"\\$___X_CMD_ROOT_MOD/tmux/lib/xsh\""
 
     gsub("\"", "\\\"", cmd)
     cmd = SHELL_CMD " -ic "  "\"" cmd "\""
@@ -78,7 +79,7 @@ function cal_layout( value, last_layout ){
     return (value == "\"vertical\"") ? "-v" : "-h"
 }
 
-function prepare_window( i,     _name, _root, _exec, _kp ){
+function prepare_window( i,                         _name, _root, _exec, _kp ){
     _kp = SUBSEP jqu("1") SUBSEP jqu( "windows" ) SUBSEP jqu(i)
 
     _name = obj[ _kp, jqu("name") ]
@@ -88,7 +89,7 @@ function prepare_window( i,     _name, _root, _exec, _kp ){
     biggest_panel_id = prepare_panel( _kp SUBSEP jqu("panes"), 0, cal_layout(obj[ _kp, jqu("layout") ], "-v") )
 }
 
-function prepare_panel( kp, pane_id, layout,  _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
+function prepare_panel( kp, pane_id, layout,        _code, _pane , l, i, _exec, _root, _start_pane_id, PANE_EXEC_LOCAL ){
     l = obj[ kp L ]
 
     if (pane_id != "")      _pane = " -t:." pane_id " "
@@ -117,7 +118,7 @@ function prepare_panel( kp, pane_id, layout,  _code, _pane , l, i, _exec, _root,
 
     for (i=l-1; i>=2; --i) _size[i] = _size[i] + _size[i+1]
 
-    for (i=2; i<=l; ++i) TADD( sprintf("split-window %s -l %d%% %s", layout , _size[i], find_exec( kp SUBSEP jqu(i) ) ) )
+    for (i=2; i<=l; ++i) TADD( sprintf("split-window %s %s -l %d%% %s", _pane, layout , _size[i], find_exec( kp SUBSEP jqu(i) ) ) )
 
     for (i=1; i<=l; ++i) {
         if (i>1) pane_id = pane_id + 1

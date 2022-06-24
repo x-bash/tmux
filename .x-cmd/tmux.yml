@@ -8,17 +8,19 @@ windows:
     before: >
       x use node=v18
     panes:
-      - name: man
-        x: x man tmux
-        exec: bash -ic '. ~/.x-cmd/.boot/boot && x man tmux'
-        size: 30%
       - name: monitor
         # layout: horizontal
         # size: 70%
         panes:
-          - top
+          - panes:
+              - top
+              - x dust && read r
           - name: netstat
             exec: netstat -v
+      - name: man
+        x: x man tmux
+        size: 30%
+
   # - name: logs
   #   # root: "%{PWD}"
   #   exec: tail -f log/app.log
