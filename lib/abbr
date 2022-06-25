@@ -6,7 +6,7 @@ ___x_cmd_tmux___abbr_(){
     case "$op" in
         msg)                    ___x_cmd___tmux_origin display-message "$@"     ;;
         pop)                    ___x_cmd___tmux_origin display-popup "$@"     ;;
-        menu)                   ___x_cmd___tmux_origin display-menu "$@"     ;;
+        # menu)                   ___x_cmd___tmux_origin display-menu "$@"     ;;
         prompt)                 ___x_cmd___tmux_origin command-prompt "$@"     ;;
         # confirm)                ___x_cmd___tmux_origin confirm-before "$@"     ;;
     esac

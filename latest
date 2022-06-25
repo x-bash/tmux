@@ -34,3 +34,5 @@ ___x_cmd___tmux_origin(){
 fi
 
 xrc setmain ___x_cmd_tmux
+
+alias t=___x_cmd_tmux
