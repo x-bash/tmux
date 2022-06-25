@@ -9,7 +9,7 @@ if ! command -v tmux 1>/dev/null; then
     return 1
 else
 
-xrc:mod:lib tmux load util
+xrc:mod:lib tmux load util abbr
 
 ___x_cmd_tmux(){
     case "$1" in
@@ -17,6 +17,8 @@ ___x_cmd_tmux(){
         load)       shift; ___x_cmd_tmux_load "$@" ;;
         :*)         shift; ___x_cmd_tmux_quickenter "${1#:}" ;;
         *)
+                    ___x_cmd_tmux___abbr_ "$@"
+                    [ "$___X_CMD_TMUX___ABBR_" -ne 0 ] || return
                     if [ -f "$1" ]; then
                         ___x_cmd_tmux_load "$@"
                         return
