@@ -4,7 +4,8 @@ ___x_cmd_tmux_pm(){
     local op="$1"; shift
 
     case "$op" in
-        use|unuse|rm|clone|\
+        use|unuse|\
+        rm|clone|\
         ls)             "___x_cmd_tmux_pm_$op" "$@" ;;
         *)
             ;;
