@@ -16,7 +16,7 @@ ___x_cmd_tmux_pm(){
 
 ___x_cmd_tmux_pm_ls(){
     :
-    # x filelist ls "source-file $___X_CMD_TMUX_PM_WHICHDIR_"  ${line#source-file } ${line%%/*}
+    # x filelist ls "source-file $___X_CMD_TMUX_PM_WHICHDIR_"  line="${line#source-file }" line="${line%%/*}"
 }
 
 ___x_cmd_tmux_pm_whichdir_(){
