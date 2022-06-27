@@ -33,8 +33,7 @@ ___x_cmd_tmux_pm_src(){
 
 # tmux start up should be fast enough.
 ___x_cmd_tmux_pm_use(){
-    local i
-    for i in "$@"; do
+    local i; for i in "$@"; do
         ___x_cmd_tmux_pm_whichdir_ "$@" || return
         ___x_cmd_tmux source-file "$___X_CMD_TMUX_PM_WHICHDIR_/"*.tmux
         # should be a tmux config file
