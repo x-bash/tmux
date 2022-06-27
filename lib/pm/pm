@@ -25,8 +25,12 @@ ___x_cmd_tmux_pm_ls(){
 ___x_cmd_tmux_pm_whichdir_(){
     local name="$1"
     case "$name" in
-        */*)    ;;
-        *)      ;;
+        @*/*)                   ;;
+        tmux-plugins/*)         ;;
+        git@*/*)                ;;
+        https://*)              ;;
+        */*)                    ;;  # Using git
+        *)                      ;;
     esac
 }
 
