@@ -32,11 +32,18 @@ ___x_cmd_tmux_pm_src(){
     ___x_cmd_tmux source-file "${1:?Provide folder}/"*.tmux
 }
 
+___x_cmd_tmux_pm_try(){
+    local i; for i in "$@"; do
+        ___x_cmd_tmux_pm_whichdir_ "$@" || return
+        ___x_cmd_tmux_pm_src "$___X_CMD_TMUX_PM_WHICHDIR_"
+    done
+}
+
 # tmux start up should be fast enough.
 ___x_cmd_tmux_pm_use(){
     local i; for i in "$@"; do
         ___x_cmd_tmux_pm_whichdir_ "$@" || return
-        ___x_cmd_tmux source-file "$___X_CMD_TMUX_PM_WHICHDIR_/"*.tmux
+        ___x_cmd_tmux_pm_src "$___X_CMD_TMUX_PM_WHICHDIR_"
         # should be a tmux config file
         # x filelist add "source-file $___X_CMD_TMUX_PM_WHICHDIR_"
     done
