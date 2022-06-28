@@ -66,3 +66,12 @@ ___x_cmd_tmux_pm_unuse(){
         # x filelist add "source-file $___X_CMD_TMUX_PM_WHICHDIR_"
     done
 }
+
+___x_cmd_tmux_pm_rm(){
+    local i
+    for i in "$@"; do
+        ___x_cmd_tmux_pm_whichdir_ "$@" || return
+        # should be a tmux config file
+        # x filelist add "source-file $___X_CMD_TMUX_PM_WHICHDIR_"
+    done
+}
