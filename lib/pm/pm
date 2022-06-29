@@ -8,7 +8,7 @@ ___x_cmd_tmux_pm(){
         rm|clone|\
         ls)             "___x_cmd_tmux_pm_$op" "$@" ;;
         *)
-            ;;
+                        ;;
     esac
 }
 
