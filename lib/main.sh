@@ -18,8 +18,8 @@ tmux set -g     status-right-style "bg=yellow"
 
 # tmux set -g     status-left "#(date +%H:%M)  "
 
-# tmux set-interval 1
-# tmux set -g     status-left "#(date +%T)  "
+tmux set        status-interval 1
+tmux set -g     status-left "#(date +%T)  "
 
 tmux set -g     status-right "#{host} #(date +%H:%M)"
 
@@ -34,6 +34,5 @@ tmux bind a    display-popup -E "tmux split-window -v; ls; exit 0"
 
 # Provide keby
 
-tmux bind a    display-popup -E "bash a.sh"
-
+tmux bind b    display-popup -E "bash a.sh"
 
