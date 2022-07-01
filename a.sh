@@ -1,4 +1,6 @@
 
+. $HOME/.x-cmd/xrc/latest
+
 # Command Pallate
 
 echo "Command:"
