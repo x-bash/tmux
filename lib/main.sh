@@ -29,3 +29,11 @@ tmux bind b     display-menu \
     split-vertical      '-'     "split-window -v" \
     split-horizontal    '|'     "split-window -h"
 
+
+tmux bind a    display-popup -E "tmux split-window -v; ls; exit 0"
+
+# Provide keby
+
+tmux bind a    display-popup -E "bash a.sh"
+
+
