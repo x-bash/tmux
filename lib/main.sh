@@ -26,6 +26,6 @@ tmux set -g     status-right "#{host} #(date +%H:%M)"
 tmux bind M     set mouse
 
 tmux bind b     display-menu \
-    split-vertical      '-'   "split-window -v" \
-    split-horizontal    '|'   "split-window -h"
+    split-vertical      '-'     "split-window -v" \
+    split-horizontal    '|'     "split-window -h"
 
