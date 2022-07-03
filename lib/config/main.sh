@@ -30,15 +30,13 @@ tmux bind b    display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/c
 
 
 # Section: yank mode
-
+# copy-pipe
 ___X_CMD_TMUX_COPY_CANCEL="${___X_CMD_TMUX_COPY_CANCEL:-copy-pipe-and-cancel}"
 
 
 x os name_
 case "$___X_CMD_OS_NAME_" in
     darwin)
-        # copy-pipe-and-cancel
-
         tmux \
             bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$___X_CMD_TMUX_COPY_CANCEL" pbcopy \; \
             bind y run -b "tmux save-buffer - | pbcopy" \; # \
