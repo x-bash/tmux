@@ -1,6 +1,6 @@
 
-# . $HOME/.x-cmd/xrc/latest
-. "${___X_CMD_ROOT_MOD}/xrc/latest"
+. $HOME/.x-cmd/xrc/latest
+# . "${___X_CMD_ROOT_MOD}/xrc/latest"
 
 # Command Pallate
 
