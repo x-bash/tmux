@@ -36,3 +36,47 @@ tmux bind a    display-popup -E "tmux split-window -v; ls; exit 0"
 
 tmux bind b    display-popup -E "bash a.sh"
 
+
+# Section: yank mode
+
+___X_CMD_TMUX_COPY_CANCEL="${___X_CMD_TMUX_COPY_CANCEL:-copy-pipe-and-cancel}"
+
+x os name_
+case "$___X_CMD_OS_NAME_" in
+    darwin)
+        # copy-pipe-and-cancel
+        tmux \
+            bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$___X_CMD_TMUX_COPY_CANCEL" pbcopy \; \
+            bind y run -b "tmux save-buffer - | pbcopy" \; # \
+            # bind y run -b "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+        ;;
+
+    linux)
+        if command -v xsel >/dev/null 2>&1; then
+            tmux \
+                bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$___X_CMD_TMUX_COPY_CANCEL" 'xsel -i -b' \; \
+                bind-key y run -b "tmux save-buffer - | xsel -i -b"
+        elif command -v xclip >/dev/null 2>&1; then
+            tmux \
+                bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$___X_CMD_TMUX_COPY_CANCEL" 'xclip -i -selection clipboard' \; \
+                bind-key y run -b "tmux save-buffer - | xclip -i -selection clipboard"
+        else
+            printf "%s\n" "Please install xsel or xclip." >&2
+        fi
+    ;;
+
+    win)
+        if [ -c /dev/clipboard ]; then
+            tmux \
+                bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$___X_CMD_TMUX_COPY_CANCEL" 'cat >/dev/clipboard' \; \
+                bind-key y run -b "tmux save-buffer - > /dev/clipboard"
+        else
+            tmux \
+                bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$___X_CMD_TMUX_COPY_CANCEL" clip.exe \; \
+                bind-key y run -b "tmux save-buffer - | clip.exe"
+        fi
+    ;;
+esac
+
+# EndSection
+
