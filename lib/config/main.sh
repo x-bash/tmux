@@ -15,14 +15,15 @@ tmux setw -g    window-status-separator ' '
 tmux setw -g    window-status-format "#I:#W "
 tmux setw -g    window-status-current-format "#[fg=red,bg=blue]#I:#W "
 
-tmux set -g     status-right-style "bg=yellow"
+tmux set -g     status-right-style  "bg=yellow"
+tmux set -g     status-left-style   "bg=cyan"
 
 # tmux set -g     status-left "#(tmux show -v mouse)  "
 
 # tmux set -g     status-left "#(date +%H:%M)  "
 
 tmux set        status-interval 1
-tmux set -g     status-left "#(date +%T)  "
+# tmux set -g     status-left "#(date +%T)  "
 tmux set -g     status-right "#{host} #(date +%H:%M)"
 
 # Provide keby
