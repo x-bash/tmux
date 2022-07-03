@@ -11,7 +11,16 @@ else
 
 xrc:mod:lib tmux load util abbr
 
+___x_cmd_tmux___init(){
+    [ -z "$___X_CMD_TMUX____INIT" ] || return 0
+    grep -q 'source-file "$HOME/.x-cmd/tmux/lib/config/entrance.tmux.conf"' "$HOME/.tmux.conf" || \
+        printf "%s" 'source-file "$HOME/.x-cmd/tmux/lib/config/entrance.tmux.conf"' >>"$HOME/.tmux.conf"
+    ___X_CMD_TMUX____INIT=1
+}
+
 ___x_cmd_tmux(){
+    ___x_cmd_tmux___init
+
     case "$1" in
         "")         ___x_cmd_tmux_load ;;
         load)       shift; ___x_cmd_tmux_load "$@" ;;

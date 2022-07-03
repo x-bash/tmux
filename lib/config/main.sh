@@ -1,6 +1,8 @@
 
-# . $HOME/.x-cmd/xrc/latest
+
+# . "${___X_CMD_ROOT_MOD}/xrc/latest"
 . "${___X_CMD_ROOT_MOD}/xrc/latest"
+
 
 ___x_cmd_tmux_set_color(){
     : bg : color222 color111 color150 color140
@@ -32,7 +34,6 @@ tmux bind b    display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/c
 ___X_CMD_TMUX_COPY_CANCEL="${___X_CMD_TMUX_COPY_CANCEL:-copy-pipe-and-cancel}"
 
 
-echo hi>>$HOME/x-bash/tmux/a.txt
 x os name_
 case "$___X_CMD_OS_NAME_" in
     darwin)
