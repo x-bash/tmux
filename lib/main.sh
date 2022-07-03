@@ -22,8 +22,6 @@ tmux set        status-interval 1
 tmux set -g     status-left "#(date +%T)  "
 tmux set -g     status-right "#{host} #(date +%H:%M)"
 
-tmux bind a    display-popup -E "tmux split-window -v; ls; exit 0"
-
 # Provide keby
 tmux bind b    display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/popup.sh"
 
