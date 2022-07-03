@@ -1,5 +1,6 @@
 
-
+# . $HOME/.x-cmd/xrc/latest
+. "${___X_CMD_ROOT_MOD}/xrc/latest"
 
 ___x_cmd_tmux_set_color(){
     : bg : color222 color111 color150 color140
@@ -7,8 +8,6 @@ ___x_cmd_tmux_set_color(){
     # x tmux set status-fg "$2"
 }
 
-
-tmux source-file "$___X_CMD_ROOT_MOD/tmux/lib/style/entrance.tmux.conf"
 
 tmux setw -g    window-status-separator ' '
 tmux setw -g    window-status-format "#I:#W "
