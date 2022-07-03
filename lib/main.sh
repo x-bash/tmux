@@ -20,11 +20,7 @@ tmux set -g     status-right-style "bg=yellow"
 
 tmux set        status-interval 1
 tmux set -g     status-left "#(date +%T)  "
-
 tmux set -g     status-right "#{host} #(date +%H:%M)"
-
-tmux bind M     set mouse
-
 
 tmux bind a    display-popup -E "tmux split-window -v; ls; exit 0"
 
