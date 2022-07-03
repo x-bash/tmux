@@ -23,7 +23,7 @@ tmux set -g     status-left "#(date +%T)  "
 tmux set -g     status-right "#{host} #(date +%H:%M)"
 
 # Provide keby
-tmux bind b    display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/popup.sh"
+tmux bind b    display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/config/popup.sh"
 
 
 # Section: yank mode
