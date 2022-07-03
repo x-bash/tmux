@@ -6,7 +6,7 @@ ___x_cmd_tmux_set_color(){
 }
 
 
-tmux source-file $___X_CMD_ROOT_MOD/tmux/lib/style/entrance.tmux.conf
+tmux source-file "$___X_CMD_ROOT_MOD/tmux/lib/style/entrance.tmux.conf"
 
 tmux setw -g    window-status-separator ' '
 tmux setw -g    window-status-format "#I:#W "
