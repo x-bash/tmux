@@ -1,21 +1,23 @@
 
 . $HOME/.x-cmd/xrc/latest
-# . "${___X_CMD_ROOT_MOD}/xrc/latest"
 
-# Command Pallate
+while true; do
+    x ui select idx "Command: " \
+        "choose-tree (<PREFIX> + s)" \
+        "vertical-split (<PREFIX> + \")" \
+        "horizontal-split (<PREFIX> + \%)" \
+        "new-window (<PREFIX> + n)" \
+        "kill-window (<PREFIX> + k)" \
+        "new-session (<PREFIX> + Ctrl-C)"
 
-echo "Command:"
-select name in "choose-tree" "vertical-split" "horizontal-split" "new-window" "kill-window" "new-session"
-do
-    case "$name" in
-        choose-tree)            tmux choose-tree;       exit ;;
-        vertical-split)         tmux split-window -v;   exit ;;
-        horizontal-split)       tmux split-window -h;   exit ;;
-        new-window)             tmux new-window;        exit ;;
-        kill-window)            tmux kill-window;       exit ;;
-        kill-session)           tmux kill-window;       exit ;;
-        kill-panel)             tmux kill-window;       exit ;;
-        new-session)            tmux new-session;       exit ;;
-        *)                      ;;
+    case "$idx" in
+        1)              tmux choose-tree;       exit ;;
+        2)              tmux split-window -v;   exit ;;
+        3)              tmux split-window -h;   exit ;;
+        4)              tmux new-window;        exit ;;
+        5)              tmux kill-window;       exit ;;
+        6)              tmux new-session;       exit ;;
+        *)              ;;
     esac
 done
+
