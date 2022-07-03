@@ -1,4 +1,18 @@
 
+
+# split:
+#     - vertical
+#     - horizontal
+# new:
+#     - window
+#     - session
+#     - pane
+# kill:
+#     - window
+#     - session
+#     - pane
+
+
 . $HOME/.x-cmd/xrc/latest
 
 while true; do
