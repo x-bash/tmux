@@ -20,7 +20,7 @@ ___x_cmd_tmux_load(){
         x:error "Loading failure."
     fi
 
-    echo "$code"
+    eval "$code"
 }
 
 ___x_cmd_tmux_load___default(){
