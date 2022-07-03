@@ -25,16 +25,11 @@ tmux set -g     status-right "#{host} #(date +%H:%M)"
 
 tmux bind M     set mouse
 
-tmux bind b     display-menu \
-    split-vertical      '-'     "split-window -v" \
-    split-horizontal    '|'     "split-window -h"
-
 
 tmux bind a    display-popup -E "tmux split-window -v; ls; exit 0"
 
 # Provide keby
-
-tmux bind b    display-popup -E "bash a.sh"
+tmux bind b    display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/popup.sh"
 
 
 # Section: yank mode
