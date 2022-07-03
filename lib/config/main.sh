@@ -1,4 +1,6 @@
 
+
+
 ___x_cmd_tmux_set_color(){
     : bg : color222 color111 color150 color140
     x tmux set status-bg "$1"
