@@ -8,15 +8,17 @@ while true; do
         "horizontal-split (<PREFIX> + \%)" \
         "new-window (<PREFIX> + n)" \
         "kill-window (<PREFIX> + k)" \
+        "kill-panel (<PREFIX> + x)" \
         "new-session (<PREFIX> + Ctrl-C)"
 
     case "$idx" in
-        1)              tmux choose-tree;       exit ;;
-        2)              tmux split-window -v;   exit ;;
-        3)              tmux split-window -h;   exit ;;
-        4)              tmux new-window;        exit ;;
-        5)              tmux kill-window;       exit ;;
-        6)              tmux new-session;       exit ;;
+        1)              tmux choose-tree;               exit ;;
+        2)              tmux split-window -v;           exit ;;
+        3)              tmux split-window -h;           exit ;;
+        4)              tmux new-window;                exit ;;
+        5)              tmux kill-window;               exit ;;
+        6)              tmux kill-panel;                exit ;;
+        7)              tmux new-session;               exit ;;
         *)              ;;
     esac
 done
