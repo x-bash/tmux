@@ -5,7 +5,7 @@
 # Command Pallate
 
 echo "Command:"
-select name in "Vertical-Split" "Horizontal-Split" "New-Window" "Kill-Window"
+select name in "Vertical-Split" "Horizontal-Split" "New-Window" "Kill-Window" "New-Session"
 do
     case "$name" in
         Vertical-Split)         tmux split-window -v;   exit ;;
@@ -14,6 +14,7 @@ do
         Kill-Window)            tmux kill-window;       exit ;;
         Kill-Session)           tmux kill-window;       exit ;;
         Kill-Panel)             tmux kill-window;       exit ;;
+        New-Session)            tmux new-session;       exit ;;
         *)                      ;;
     esac
 done
