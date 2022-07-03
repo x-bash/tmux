@@ -13,10 +13,10 @@ ___x_cmd_tmux_set_color(){
 
 tmux setw -g    window-status-separator ' '
 tmux setw -g    window-status-format "#I:#W "
-tmux setw -g    window-status-current-format "#[fg=red,bg=blue]#I:#W "
+tmux setw -g    window-status-current-format "#[fg=red,bg=cyan,bold]#I:#W "
 
 tmux set -g     status-right-style  "bg=yellow"
-tmux set -g     status-left-style   "bg=cyan"
+tmux set -g     status-left-style   "bg=orange"
 
 # tmux set -g     status-left "#(tmux show -v mouse)  "
 
