@@ -5,17 +5,17 @@
 # Command Pallate
 
 echo "Command:"
-select name in "Vertical-Split" "Horizontal-Split" "New-Window" "Kill-Window" "New-Session" "choose-tree"
+select name in "choose-tree" "vertical-split" "horizontal-split" "new-window" "kill-window" "new-session"
 do
     case "$name" in
-        Vertical-Split)         tmux split-window -v;   exit ;;
-        Horizontal-Split)       tmux split-window -h;   exit ;;
-        New-Window)             tmux new-window;        exit ;;
-        Kill-Window)            tmux kill-window;       exit ;;
-        Kill-Session)           tmux kill-window;       exit ;;
-        Kill-Panel)             tmux kill-window;       exit ;;
-        New-Session)            tmux new-session;       exit ;;
         choose-tree)            tmux choose-tree;       exit ;;
+        vertical-split)         tmux split-window -v;   exit ;;
+        horizontal-split)       tmux split-window -h;   exit ;;
+        new-window)             tmux new-window;        exit ;;
+        kill-window)            tmux kill-window;       exit ;;
+        kill-session)           tmux kill-window;       exit ;;
+        kill-panel)             tmux kill-window;       exit ;;
+        new-session)            tmux new-session;       exit ;;
         *)                      ;;
     esac
 done
