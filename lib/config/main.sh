@@ -30,6 +30,6 @@ $___X_CMD_TMUX_BIN set        status-interval 1
 $___X_CMD_TMUX_BIN set -g     status-right "#{host} #(date +%H:%M)"
 
 # Provide keby
-$___X_CMD_TMUX_BIN bind b    display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/config/popup.sh"
+$___X_CMD_TMUX_BIN bind b     display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/config/popup.sh"
 
 
