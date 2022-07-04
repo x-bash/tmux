@@ -39,3 +39,13 @@ windowc: [
   [ "ls" ]
 ]
 
+
+windows:
+  - name: editor
+    root: ~/
+    # layout: vertical
+    before: >
+      x use node=v18
+    panes:
+      - [ "top",        "x dust && read r" ]
+      - [ "x man tmux"  ]
