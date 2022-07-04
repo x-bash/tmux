@@ -3,7 +3,6 @@ scroll_down_exit_copy_mode_option="@scroll-down-exit-copy-mode"
 scroll_in_moused_over_pane_option="@scroll-in-moused-over-pane"
 scroll_without_changing_pane_option="@scroll-without-changing-pane"
 scroll_speed_num_lines_per_scroll_option="@scroll-speed-num-lines-per-scroll"
-deprecated_prevent_scroll_for_fullscreen_alternate_buffer_option="@prevent-scroll-for-fullscreen-alternate-buffer"
 emulate_scroll_for_no_mouse_alternate_buffer_option="@emulate-scroll-for-no-mouse-alternate-buffer"
 
 get_repeated_scroll_cmd() {
@@ -13,15 +12,14 @@ get_repeated_scroll_cmd() {
     cmd=$cmd"send-keys $1 ; "
   done
 
-  echo "$cmd"
+  printf "%s\n" "$cmd"
 }
 
 better_mouse_mode_main() {
-  local scroll_down_to_exit=$(___x_cmd_tmux_config_get_tmux_option "$scroll_down_exit_copy_mode_option" "on")
-  local scroll_in_moused_over_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_in_moused_over_pane_option" "on")
-  local scroll_without_changing_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_without_changing_pane_option" "off")
-  local deprecated_prevent_scroll_for_fullscreen_alternate_buffer=$(___x_cmd_tmux_config_get_tmux_option "$deprecated_prevent_scroll_for_fullscreen_alternate_buffer_option" "off")
-  local emulate_scroll_for_no_mouse_alternate_buffer=$(___x_cmd_tmux_config_get_tmux_option "$emulate_scroll_for_no_mouse_alternate_buffer_option" "$deprecated_prevent_scroll_for_fullscreen_alternate_buffer")
+  local scroll_down_to_exit;                                scroll_down_to_exit=$(___x_cmd_tmux_config_get_tmux_option "$scroll_down_exit_copy_mode_option" "on")
+  local scroll_in_moused_over_pane;                         scroll_in_moused_over_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_in_moused_over_pane_option" "on")
+  local scroll_without_changing_pane;                       scroll_without_changing_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_without_changing_pane_option" "off")
+  local emulate_scroll_for_no_mouse_alternate_buffer;       emulate_scroll_for_no_mouse_alternate_buffer=$(___x_cmd_tmux_config_get_tmux_option "$emulate_scroll_for_no_mouse_alternate_buffer_option" "on")
 
   local enter_copy_mode_cmd="copy-mode"
   [ "$scroll_down_to_exit" != 'on' ] || enter_copy_mode_cmd="copy-mode -e"
