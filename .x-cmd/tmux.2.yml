@@ -1,4 +1,4 @@
-
+name: x-tmux-2
 windows:
   - name: editor
     panes:
