@@ -1,7 +1,7 @@
 
 ___x_cmd_tmux_quickenter(){
     local session="${1}"
-    if [ -n "$session" ]; then
+    if [ -z "$session" ]; then
         session="$(___x_cmd___tmux_origin ls 2>/dev/null | head -n1 | awk '{ print substr($1, 1, length($1)-1); }')"
         if [ -z "$session" ]; then
             printf "%s\n" "Please provide session. tmux :<session>" >&2
@@ -11,7 +11,11 @@ ___x_cmd_tmux_quickenter(){
 
     local answer
     if ! ___x_cmd___tmux_origin attach -t "$session" 2>/dev/null; then
-        read -p "Session not exists; Ctrl-C to exit. Press any other key to create new session : " -r answer || exit 0
+        if [ -n "$ZSH_VERSION" ]; then
+            read "?Session not exists; Ctrl-C to exit. Press any other key to create new session : " answer || exit 0
+        else
+            read -p "Session not exists; Ctrl-C to exit. Press any other key to create new session : " -r answer || exit 0
+        fi
         ___x_cmd___tmux_origin new -s "$1"
     fi
 }
