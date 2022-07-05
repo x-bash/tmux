@@ -20,7 +20,7 @@ ___x_cmd_tmux(){
     case "$1" in
         "")         ___x_cmd_tmux_load ;;
         load)       shift; ___x_cmd_tmux_load "$@" ;;
-        :*)         shift; ___x_cmd_tmux_quickenter "${1#:}" ;;
+        :*)         ___x_cmd_tmux_quickenter "${1#:}" ;;
         *)
                     ___x_cmd_tmux___abbr_ "$@"
                     [ "$___X_CMD_TMUX___ABBR_" -ne 0 ] || return

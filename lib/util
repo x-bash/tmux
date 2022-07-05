@@ -3,20 +3,21 @@ ___x_cmd_tmux_quickenter(){
     local session="${1}"
     case "$session" in
         "")
-            if session="$(tmux ls | awk 'NR==1{ print ($1==":") ? "" : $1; } END{ return (NR>=1) ? 0 : 1; } ')"; then
-                tmux:info "Using default session: $session"
-                tmux attach -t "$session"
+            if session="$(tmux ls | awk 'NR==1{ print ($1==":") ? "" : $1; } END{ exit( (NR>=1) ? 0 : 1 ); } ')"; then
+                tmux:info "Using default session: ${session%:}"
+                tmux attach -t "${session%:}"
             else
                 tmux:error "Please provide session. tmux :<session>"
                 return 1
             fi
             ;;
         *)
-            if tmux ls | awk -v session="$session" -v code=1 '$0==session{ code=0; exit(0) } END{ exit(code) }' ; then
-                tmux:info "Using default session: $session"
+            if tmux ls | awk -v session="${session}:" -v code=1 '$1==session{ code=0; exit(0) } END{ exit(code) }' ; then
+                tmux:info "Entering into session: $session"
                 tmux attach -t "$session"
             else
-                read -p "Session not exists:\n\tCtrl-C to exit.\nOR Press any other key to create new session : " -r answer || exit 0
+                printf "%s %s %s" "Session not exists." "Ctrl-C to exit." "OR Press any other key to create new session"
+                local answer; read -r answer || exit 0
                 tmux new -s "$1"
             fi
     esac
