@@ -8,8 +8,10 @@ emulate_scroll_for_no_mouse_alternate_buffer_option="@emulate-scroll-for-no-mous
 get_repeated_scroll_cmd() {
   local scroll_speed_num_lines_per_scroll=$(___x_cmd_tmux_config_get_tmux_option "$scroll_speed_num_lines_per_scroll_option" "3")
   local cmd=""
-  for ((i = 1; i <= scroll_speed_num_lines_per_scroll; i++)); do
+  local i
+  while [ "$i" -le "$scroll_speed_num_lines_per_scroll" ]; do
     cmd=$cmd"send-keys $1 ; "
+    i=$((i+1))
   done
 
   printf "%s\n" "$cmd"
