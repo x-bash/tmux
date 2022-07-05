@@ -16,7 +16,7 @@ ___x_cmd_tmux_quickenter(){
                 tmux:info "Entering into session: $session"
                 tmux attach -t "$session"
             else
-                printf "%s %s %s" "Session not exists." "Ctrl-C to exit." "OR Press ANY OTHER KEY to CREATE new session[$sessioin]"
+                printf "%s %s %s" "Session not exists." "Ctrl-C to exit." "OR Press ANY OTHER KEY to CREATE new session[$session]"
                 local answer; read -r answer || exit 0
                 tmux new -s "$session"
             fi
