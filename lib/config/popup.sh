@@ -26,13 +26,13 @@ while true; do
         "new-session (<PREFIX> + Ctrl-C)"
 
     case "$idx" in
-        1)              tmux choose-tree;           exit ;;
-        2)              tmux split-window -v;       exit ;;
-        3)              tmux split-window -h;       exit ;;
-        4)              tmux new-window;            exit ;;
-        5)              tmux kill-window;           exit ;;
-        6)              tmux kill-panel;            exit ;;
-        7)              tmux new-session;           exit ;;
+        1)              $___X_CMD_TMUX_BIN choose-tree;           exit ;;
+        2)              $___X_CMD_TMUX_BIN split-window -v;       exit ;;
+        3)              $___X_CMD_TMUX_BIN split-window -h;       exit ;;
+        4)              $___X_CMD_TMUX_BIN new-window;            exit ;;
+        5)              $___X_CMD_TMUX_BIN kill-window;           exit ;;
+        6)              $___X_CMD_TMUX_BIN kill-panel;            exit ;;
+        7)              $___X_CMD_TMUX_BIN new-session;           exit ;;
         *)              ;;
     esac
 done
