@@ -3,7 +3,7 @@
 
 # license:      GPLv3
 
-
+x log init tmux
 
 xrc:mod:lib tmux load util abbr
 
