@@ -10,8 +10,8 @@ ___x_cmd_tmux_config_get_tmux_option() {
 }
 
 
-___x_cmd_tmux_set_color(){
-    : bg : color222 color111 color150 color140
-    $___X_CMD_TMUX_BIN set status-bg "$1"
-    # x $___X_CMD_TMUX_BIN set status-fg "$2"
-}
+# ___x_cmd_tmux_set_color(){
+#     : bg : color222 color111 color150 color140
+#     $___X_CMD_TMUX_BIN set status-bg "$1"
+#     # x $___X_CMD_TMUX_BIN set status-fg "$2"
+# }

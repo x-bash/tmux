@@ -1,5 +1,7 @@
 # shellcheck shell=sh disable=SC3043
 
+echo  "aaa---$___X_CMD_TMUX_BIN">>"$HOME/x-bash/tmux/aaa"
+
 scroll_down_exit_copy_mode_option="@scroll-down-exit-copy-mode"
 scroll_in_moused_over_pane_option="@scroll-in-moused-over-pane"
 scroll_without_changing_pane_option="@scroll-without-changing-pane"
@@ -47,6 +49,21 @@ better_mouse_mode_main() {
   #   pattern used here for consistency is " \" ' \\\" \\\"  ' \" " -- that is,
   #   " for top-level quotes, \" for the next level in, ' for the third level,
   #   and \\\" for the fourth (note that the fourth comes from inside get_repeated_scroll_cmd).
+
+  echo $___X_CMD_TMUX_BIN bind-key -n WheelUpPane \
+    if -Ft= "#{mouse_any_flag}" \
+    "send-keys -M" \
+    " \
+        if -Ft= '$check_for_fullscreen_alternate_buffer' \
+          \"$(get_repeated_scroll_cmd "-t= up")\" \
+          \" \
+            $select_moused_over_pane_cmd \
+            if -Ft= '#{pane_in_mode}' \
+              '$(get_repeated_scroll_cmd -M)' \
+              '$enter_copy_mode_cmd ; $(get_repeated_scroll_cmd -M)' \
+          \" \
+      " >>"$HOME/x-bash/tmux/aaa"
+
   $___X_CMD_TMUX_BIN bind-key -n WheelUpPane \
     if -Ft= "#{mouse_any_flag}" \
     "send-keys -M" \
