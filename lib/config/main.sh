@@ -12,4 +12,3 @@ xrc:mod     tmux/lib/config/plugin-copy.sh      \
             tmux/lib/config/plugin-control.sh   \
             tmux/lib/config/plugin-scroll.sh    \
             tmux/lib/config/plugin-theme-default.sh
-
