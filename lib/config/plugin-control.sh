@@ -39,7 +39,3 @@ $___X_CMD_TMUX_BIN    \
 
 # Problem
 # tmux bind -n C-l send-keys C-l \; run 'sleep 0.2' \; clear-history #\
-
-
-
-
