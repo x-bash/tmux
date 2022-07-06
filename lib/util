@@ -18,9 +18,9 @@ ___x_cmd_tmux_quickenter(){
             else
                 local idx; while true; do
                     x ui select idx, \
-                        "Session not exists. Next?" \
+                        "Session [$session] NOT found. Next:" \
                             "CREATE A new session: $session" \
-                            "Exit" || true
+                            "Quit" || true
 
                     case "$idx" in
                         1)      ___x_cmd_tmux new -s "$session"; break ;;
