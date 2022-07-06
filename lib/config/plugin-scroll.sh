@@ -82,4 +82,6 @@ better_mouse_mode_main() {
   $___X_CMD_TMUX_BIN bind-key -Tcopy-mode-vi WheelDownPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-down
 }
 
+echo  "aaa---$___X_CMD_TMUX_BIN">>"$HOME/x-bash/tmux/aaa"
 better_mouse_mode_main
+echo  "aaa---$___X_CMD_TMUX_BIN">>"$HOME/x-bash/tmux/aaa"
