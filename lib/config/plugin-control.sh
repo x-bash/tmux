@@ -24,8 +24,8 @@ $___X_CMD_TMUX_BIN    \
     bind BTab switch-client -l \; \
     bind '-' split-window -v \; \
     bind '|' split-window -h \; \
-    bind > swap-pane -D \;  \
-    bind < swap-pane -U \;  \
+    bind \> swap-pane -D \;  \
+    bind \< swap-pane -U \;  \
     bind Tab last-window \; \
     set -g mouse on \; \
     bind M                      set -g mouse \; \
