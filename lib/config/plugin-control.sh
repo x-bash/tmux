@@ -36,7 +36,7 @@ $___X_CMD_TMUX_BIN    \
     set -g      display-time        1000    \; \
     bind -n C-l send-keys C-l \; run 'sleep 0.2' \; clear-history \; \
     set -g      monitor-activity    on      \; \
-    set -g      visual-activity     off     \; \
+    set -g      visual-activity     off
 
 
 
