@@ -1,6 +1,5 @@
 # shellcheck shell=sh disable=SC3043
 
-echo  "aaa---$___X_CMD_TMUX_BIN">>"$HOME/x-bash/tmux/aaa"
 
 scroll_down_exit_copy_mode_option="@scroll-down-exit-copy-mode"
 scroll_in_moused_over_pane_option="@scroll-in-moused-over-pane"
@@ -99,6 +98,4 @@ better_mouse_mode_main() {
   $___X_CMD_TMUX_BIN bind-key -Tcopy-mode-vi WheelDownPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-down
 }
 
-echo  "aaa---$___X_CMD_TMUX_BIN">>"$HOME/x-bash/tmux/aaa"
 better_mouse_mode_main
-echo  "aaa---$___X_CMD_TMUX_BIN">>"$HOME/x-bash/tmux/aaa"
