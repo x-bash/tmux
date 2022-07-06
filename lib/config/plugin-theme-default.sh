@@ -18,7 +18,7 @@ $___X_CMD_TMUX_BIN set -g     status-left-style   "bg=orange"
 
 # $___X_CMD_TMUX_BIN set -g     status-left "#(date +%H:%M)  "
 
-$___X_CMD_TMUX_BIN set        status-interval 1
+$___X_CMD_TMUX_BIN set        status-interval 10
 # $___X_CMD_TMUX_BIN set -g     status-left "#(date +%T)  "
 $___X_CMD_TMUX_BIN set -g     status-right "#{host} #(date +%H:%M)"
 
