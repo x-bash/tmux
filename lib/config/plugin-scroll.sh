@@ -1,3 +1,5 @@
+# shellcheck shell=sh disable=SC3043
+
 scroll_down_exit_copy_mode_option="@scroll-down-exit-copy-mode"
 scroll_in_moused_over_pane_option="@scroll-in-moused-over-pane"
 scroll_without_changing_pane_option="@scroll-without-changing-pane"
@@ -5,7 +7,7 @@ scroll_speed_num_lines_per_scroll_option="@scroll-speed-num-lines-per-scroll"
 emulate_scroll_for_no_mouse_alternate_buffer_option="@emulate-scroll-for-no-mouse-alternate-buffer"
 
 get_repeated_scroll_cmd() {
-  local scroll_speed_num_lines_per_scroll=$(___x_cmd_tmux_config_get_tmux_option "$scroll_speed_num_lines_per_scroll_option" "3")
+  local scroll_speed_num_lines_per_scroll;  scroll_speed_num_lines_per_scroll=$(___x_cmd_tmux_config_get_tmux_option "$scroll_speed_num_lines_per_scroll_option" "3")
   local cmd=""
   local i
   while [ "$i" -le "$scroll_speed_num_lines_per_scroll" ]; do
@@ -17,14 +19,10 @@ get_repeated_scroll_cmd() {
 }
 
 better_mouse_mode_main() {
-  local scroll_down_to_exit
-  scroll_down_to_exit=$(___x_cmd_tmux_config_get_tmux_option "$scroll_down_exit_copy_mode_option" "on")
-  local scroll_in_moused_over_pane
-  scroll_in_moused_over_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_in_moused_over_pane_option" "on")
-  local scroll_without_changing_pane
-  scroll_without_changing_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_without_changing_pane_option" "off")
-  local emulate_scroll_for_no_mouse_alternate_buffer
-  emulate_scroll_for_no_mouse_alternate_buffer=$(___x_cmd_tmux_config_get_tmux_option "$emulate_scroll_for_no_mouse_alternate_buffer_option" "on")
+  local scroll_down_to_exit;                              scroll_down_to_exit=$(___x_cmd_tmux_config_get_tmux_option "$scroll_down_exit_copy_mode_option" "on")
+  local scroll_in_moused_over_pane;                       scroll_in_moused_over_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_in_moused_over_pane_option" "on")
+  local scroll_without_changing_pane;                     scroll_without_changing_pane=$(___x_cmd_tmux_config_get_tmux_option "$scroll_without_changing_pane_option" "off")
+  local emulate_scroll_for_no_mouse_alternate_buffer;     emulate_scroll_for_no_mouse_alternate_buffer=$(___x_cmd_tmux_config_get_tmux_option "$emulate_scroll_for_no_mouse_alternate_buffer_option" "on")
 
   local enter_copy_mode_cmd="copy-mode"
   [ "$scroll_down_to_exit" != 'on' ] || enter_copy_mode_cmd="copy-mode -e"
@@ -49,7 +47,7 @@ better_mouse_mode_main() {
   #   pattern used here for consistency is " \" ' \\\" \\\"  ' \" " -- that is,
   #   " for top-level quotes, \" for the next level in, ' for the third level,
   #   and \\\" for the fourth (note that the fourth comes from inside get_repeated_scroll_cmd).
-  tmux bind-key -n WheelUpPane \
+  $___X_CMD_TMUX_BIN bind-key -n WheelUpPane \
     if -Ft= "#{mouse_any_flag}" \
     "send-keys -M" \
     " \
@@ -67,7 +65,7 @@ better_mouse_mode_main() {
   #   consistency is " \" ' \\\" \\\"  ' \" " -- that is, " for top-level quotes,
   #   \" for the next level in, ' for the third level, and \\\" for the fourth
   #   (note that the fourth comes from inside get_repeated_scroll_cmd).
-  tmux bind-key -n WheelDownPane \
+  $___X_CMD_TMUX_BIN bind-key -n WheelDownPane \
     if -Ft= "#{mouse_any_flag}" \
     "send-keys -M" \
     " \
@@ -77,11 +75,11 @@ better_mouse_mode_main() {
       "
 
   # For tmux 2.4+ you have to set the mouse wheel options seperately for copy-mode than from root.
-  local scroll_speed_num_lines_per_scroll=$(___x_cmd_tmux_config_get_tmux_option "$scroll_speed_num_lines_per_scroll_option" "3")
-  tmux bind-key -Tcopy-mode WheelUpPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-up
-  tmux bind-key -Tcopy-mode WheelDownPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-down
-  tmux bind-key -Tcopy-mode-vi WheelUpPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-up
-  tmux bind-key -Tcopy-mode-vi WheelDownPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-down
+  local scroll_speed_num_lines_per_scroll;  scroll_speed_num_lines_per_scroll=$(___x_cmd_tmux_config_get_tmux_option "$scroll_speed_num_lines_per_scroll_option" "3")
+  $___X_CMD_TMUX_BIN bind-key -Tcopy-mode WheelUpPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-up
+  $___X_CMD_TMUX_BIN bind-key -Tcopy-mode WheelDownPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-down
+  $___X_CMD_TMUX_BIN bind-key -Tcopy-mode-vi WheelUpPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-up
+  $___X_CMD_TMUX_BIN bind-key -Tcopy-mode-vi WheelDownPane send -N"$scroll_speed_num_lines_per_scroll" -X scroll-down
 }
 
 better_mouse_mode_main
