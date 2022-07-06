@@ -5,7 +5,7 @@
 
 ___X_CMD_TMUX_BIN="${___X_CMD_TMUX_BIN:-tmux}"
 
-$___X_CMD_TMUX_BIN bind b     display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/.x-cmd/tmux/lib/config/popup.sh"
+$___X_CMD_TMUX_BIN bind b     display-popup -E "${SHELL:-/bin/sh} $___X_CMD_ROOT_MOD/tmux/lib/config/popup.sh"
 
 # Plugin management
 xrc:mod tmux/lib/config/plugin-util.sh
