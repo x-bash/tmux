@@ -7,7 +7,8 @@ $___X_CMD_TMUX_BIN setw -g    window-status-format "#I:#W "
 $___X_CMD_TMUX_BIN setw -g    window-status-current-format "#[fg=red,bg=cyan,bold]#I:#W#{?window_zoomed_flag,🔍,}"
 
 
-$___X_CMD_TMUX_BIN set -g     status-right-style  "bg=yellow"
+# $___X_CMD_TMUX_BIN set -g     status-right-style  "bg=black fg=blue"
+$___X_CMD_TMUX_BIN set -g     status-right-style  "bg=blue fg=yellow,bold"
 $___X_CMD_TMUX_BIN set -g     status-left-style   "bg=orange"
 
 # $___X_CMD_TMUX_BIN set -g     status-left "#($___X_CMD_TMUX_BIN show -v mouse)  "
