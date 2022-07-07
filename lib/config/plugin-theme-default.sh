@@ -15,5 +15,7 @@ $___X_CMD_TMUX_BIN set -g     status-left-style   "bg=orange"
 # $___X_CMD_TMUX_BIN set -g     status-left "#(date +%H:%M)  "
 
 # $___X_CMD_TMUX_BIN set -g     status-left "#(date +%T)  "
-$___X_CMD_TMUX_BIN set -g     status-right "#(sysctl -q -n vm.loadavg | cut -d' ' -f2-4) #{host} #(date +%H:%M)"
+
+___x_cmd_os_name_
+$___X_CMD_TMUX_BIN set -g     status-right "#(. $___X_CMD_ROOT_MOD/os/lib/loadavg; ___X_CMD_OS_NAME_=$___X_CMD_OS_NAME_ ___x_cmd_os_loadavg___get_fromos) | #{host} #(date +%H:%M)"
 
