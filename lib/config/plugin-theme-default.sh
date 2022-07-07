@@ -15,5 +15,5 @@ $___X_CMD_TMUX_BIN set -g     status-left-style   "bg=orange"
 # $___X_CMD_TMUX_BIN set -g     status-left "#(date +%H:%M)  "
 
 # $___X_CMD_TMUX_BIN set -g     status-left "#(date +%T)  "
-$___X_CMD_TMUX_BIN set -g     status-right "#(x os loadavg) #{host} #(date +%H:%M)"
+$___X_CMD_TMUX_BIN set -g     status-right "#(sysctl -q -n vm.loadavg | cut -d' ' -f2-4) #{host} #(date +%H:%M)"
 
