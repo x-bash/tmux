@@ -13,6 +13,6 @@ $___X_CMD_TMUX_BIN set -g     status-left-style   "bg=orange"
 # $___X_CMD_TMUX_BIN set -g     status-left "#(date +%T)  "
 
 ___x_cmd_os_name_
-$___X_CMD_TMUX_BIN set -g     status-right "| #(. $___X_CMD_ROOT_MOD/os/lib/loadavg; ___X_CMD_OS_NAME_=$___X_CMD_OS_NAME_ ___x_cmd_os_loadavg___get_fromos) | #{host} #(date +%H:%M)"
+$___X_CMD_TMUX_BIN set -g     status-right "| #(. $___X_CMD_ROOT_MOD/os/lib/loadavg; ___X_CMD_OS_NAME_=$___X_CMD_OS_NAME_ ___x_cmd_os_loadavg___get_from_osname) | #{host} #(date +%H:%M)"
 $___X_CMD_TMUX_BIN set -g     status-right-style  "bg=blue fg=yellow,bold"
 # $___X_CMD_TMUX_BIN set -g     status-right-style  "bg=black fg=blue"
