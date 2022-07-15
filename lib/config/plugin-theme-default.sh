@@ -21,17 +21,17 @@ ___X_CMD_TMUX_BG_COLOR=${___X_CMD_TMUX_BG_COLOR:-"$___X_CMD_TMUX_MINOR_3"}
 # EndSection
 
 # Section: powerline icon - need nerd-fonts support
-___X_CMD_TMUX_RIGHT_ARROW_ICON=''
-___X_CMD_TMUX_LEFT_ARROW_ICON=''
-___X_CMD_TMUX_RIGHT_HOLLOW_ARROW_ICON=''
-___X_CMD_TMUX_LEFT_HOLLOW_ARROW_ICON=''
+# ___X_CMD_TMUX_RIGHT_ARROW_ICON=''
+# ___X_CMD_TMUX_LEFT_ARROW_ICON=''
+# ___X_CMD_TMUX_RIGHT_HOLLOW_ARROW_ICON=''
+# ___X_CMD_TMUX_LEFT_HOLLOW_ARROW_ICON=''
 
-___X_CMD_TMUX_SESSION_ICON='  '
-___X_CMD_TMUX_UPLOAD_SPEED_ICON=''
-___X_CMD_TMUX_DOWNLOAD_SPEED_ICON=''
-___X_CMD_TMUX_TIME_ICON='  '
-___X_CMD_TMUX_FOLDER_ICON=''
-___X_CMD_TMUX_USER_ICON=' '
+# ___X_CMD_TMUX_SESSION_ICON='  '
+# ___X_CMD_TMUX_UPLOAD_SPEED_ICON=''
+# ___X_CMD_TMUX_DOWNLOAD_SPEED_ICON=''
+# ___X_CMD_TMUX_TIME_ICON='  '
+# ___X_CMD_TMUX_FOLDER_ICON=''
+# ___X_CMD_TMUX_USER_ICON=' '
 # EndSection
 
 # Section: pane border style
@@ -55,17 +55,19 @@ $___X_CMD_TMUX_BIN set -g     status-style              "fg=$___X_CMD_TMUX_FG_CO
 ___X_CMD_TMUX_STATUS_LEFT="#[fg=$___X_CMD_TMUX_MINOR_4,bg=$___X_CMD_TMUX_PRIMARY_COLOR]${___X_CMD_TMUX_SESSION_ICON}[#S]"
 ___X_CMD_TMUX_STATUS_LEFT="$___X_CMD_TMUX_STATUS_LEFT#[fg=$___X_CMD_TMUX_PRIMARY_COLOR,bg=$___X_CMD_TMUX_BG_COLOR]${___X_CMD_TMUX_RIGHT_ARROW_ICON}"
 $___X_CMD_TMUX_BIN set -g     status-left               "$___X_CMD_TMUX_STATUS_LEFT"
-$___X_CMD_TMUX_BIN set -g     status-left-length 150
+$___X_CMD_TMUX_BIN set -g     status-left-length        150
 
 # ----- right ------
+___x_cmd_os_name_
 if [ -n "$___X_CMD_TMUX_LEFT_ARROW_ICON" ]; then
     ___X_CMD_TMUX_STATUS_RIGHT="#[fg=$___X_CMD_TMUX_PRIMARY_COLOR,bg=$___X_CMD_TMUX_BG_COLOR]${___X_CMD_TMUX_LEFT_ARROW_ICON}"
-    ___X_CMD_TMUX_STATUS_RIGHT="${___X_CMD_TMUX_STATUS_RIGHT}#[fg=$___X_CMD_TMUX_MINOR_4,bg=$___X_CMD_TMUX_PRIMARY_COLOR]${___X_CMD_TMUX_USER_ICON}#{host}"
+    ___X_CMD_TMUX_STATUS_RIGHT="${___X_CMD_TMUX_STATUS_RIGHT}#[fg=$___X_CMD_TMUX_MINOR_4,bg=$___X_CMD_TMUX_PRIMARY_COLOR]#(. $___X_CMD_ROOT_MOD/os/lib/loadavg; ___X_CMD_OS_NAME_=$___X_CMD_OS_NAME_ ___x_cmd_os_loadavg___get_from_osname) | ${___X_CMD_TMUX_USER_ICON}#{host}"
     ___X_CMD_TMUX_STATUS_RIGHT="$___X_CMD_TMUX_STATUS_RIGHT ${___X_CMD_TMUX_LEFT_HOLLOW_ARROW_ICON}${___X_CMD_TMUX_TIME_ICON}#(date +%H:%M)"
 else
-    ___X_CMD_TMUX_STATUS_RIGHT="#[fg=$___X_CMD_TMUX_MINOR_4,bg=$___X_CMD_TMUX_PRIMARY_COLOR] #{host} #(date +%H:%M)"
+    ___X_CMD_TMUX_STATUS_RIGHT="#[fg=$___X_CMD_TMUX_MINOR_4,bg=$___X_CMD_TMUX_PRIMARY_COLOR] #(. $___X_CMD_ROOT_MOD/os/lib/loadavg; ___X_CMD_OS_NAME_=$___X_CMD_OS_NAME_ ___x_cmd_os_loadavg___get_from_osname) | #{host} #(date +%H:%M) "
 fi
 $___X_CMD_TMUX_BIN set -g     status-right              "$___X_CMD_TMUX_STATUS_RIGHT"
+$___X_CMD_TMUX_BIN set -g     status-right-length        150
 # EndSection
 
 # Section: windows style
