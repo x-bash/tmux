@@ -2,12 +2,12 @@
 $___X_CMD_TMUX_BIN    \
     set -g default-terminal "screen-256color" \; \
     if 'infocmp -x tmux-256color > /dev/null 2>&1' 'set -g default-terminal "tmux-256color"' \; \
-    setw -g xterm-keys on \; \
-    set -s escape-time 10 \; \
-    set -sg repeat-time 600 \; \
-    set -s focus-events on \; \
-    set -q -g status-utf8 on \; \
-    setw -q -g utf8 on \; \
+    setw -g xterm-keys on       \; \
+    set -s escape-time 10       \; \
+    set -sg repeat-time 600     \; \
+    set -s focus-events on      \; \
+    set -q -g status-utf8 on    \; \
+    setw -q -g utf8 on          \; \
     set -g history-limit 5000
 
     # escape-time: faster command sequences
