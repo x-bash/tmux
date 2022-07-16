@@ -27,8 +27,8 @@ $___X_CMD_TMUX_BIN    \
     bind \> swap-pane -D \;  \
     bind \< swap-pane -U \;  \
     bind Tab last-window \; \
-    set -g base-index 1 \
-    setw -g pane-base-index  \
+    set -g base-index 1 \; \
+    setw -g pane-base-index \; \
     set -g mouse on \; \
     bind M                      set -g mouse \;     \
     setw -g     automatic-rename    off     \;      \
