@@ -19,24 +19,24 @@ $___X_CMD_TMUX_BIN    \
 
 
 $___X_CMD_TMUX_BIN    \
-    bind C-c new-session \; \
+    bind C-c new-session                    \;  \
     bind C-f command-prompt -p find-session 'switch-client -t %%' \; \
-    bind BTab switch-client -l \; \
-    bind '-' split-window -v \; \
-    bind '|' split-window -h \; \
-    bind \> swap-pane -D \;  \
-    bind \< swap-pane -U \;  \
-    bind Tab last-window \; \
-    set -g base-index 1 \; \
-    setw -g pane-base-index \; \
-    set -g mouse on \; \
-    bind M                      set -g mouse \;     \
-    setw -g     automatic-rename    off     \;      \
-    set -g      renumber-windows    on      \;      \
-    set -g      set-titles          on      \;      \
-    set -g      display-panes-time  800     \;      \
-    set -g      display-time        1000    \;      \
-    set -g      monitor-activity    on      \;      \
+    bind BTab switch-client -l              \;  \
+    bind '-' split-window -v                \;  \
+    bind '|' split-window -h                \;  \
+    bind \> swap-pane -D                    \;  \
+    bind \< swap-pane -U                    \;  \
+    bind Tab last-window                    \;  \
+    set -g base-index 1                     \;  \
+    setw -g pane-base-index 1               \;  \
+    set -g mouse on                         \;  \
+    bind M      set -g mouse                \;  \
+    setw -g     automatic-rename    off     \;  \
+    set -g      renumber-windows    on      \;  \
+    set -g      set-titles          on      \;  \
+    set -g      display-panes-time  800     \;  \
+    set -g      display-time        1000    \;  \
+    set -g      monitor-activity    on      \;  \
     set -g      visual-activity     off
 
 # Problem
